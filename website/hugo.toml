@@ -2,3 +2,8 @@ baseURL = 'https://brfparlan.se/'
 languageCode = 'sv-se'
 title = 'Brf Pärlan'
 publishDir = '../../website'
+theme = 'ananke'
+
+[params]
+  favicon = 'favicon.svg'
+  background_image = 'images/header.jpg'
