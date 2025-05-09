@@ -1,0 +1,4 @@
+baseURL = 'https://brfparlan.se/'
+languageCode = 'sv-se'
+title = 'Brf Pärlan'
+publishDir = '../../website'
