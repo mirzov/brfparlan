@@ -22,6 +22,8 @@ Gå med i Boappa: [https://app.boappa.se/](https://app.boappa.se/)
 
 Styrelsen: styrelsen&#65312;brfparlan.se
 
+Vice-/ordföranden: ord&#65312;brfparlan.se
+
 IT-ansvarig: it&#65312;brfparlan.se
 
 Valberedning: valberedning&#65312;brfparlan.se
