@@ -10,6 +10,8 @@ import scala.util.Using
 
 type Email = String
 case class Person(firstName: String, lastName: String, email: Email)
+case class BoappaPerson(email: Email, firstName: Option[String], lastName: Option[String])
+
 case class Apartment(address: String)
 
 case class Membership(
@@ -26,7 +28,7 @@ end Membership
 
 val root = Paths.get("/home/oleg/Documents/Pärlan")
 type Row = Map[String, String]
-type BoappaEntry = (apartment: Apartment, person: Person)
+type BoappaEntry = (apartment: Apartment, person: BoappaPerson)
 
 def readCsv(filePath: String): Seq[Row] =
 	val file = root.resolve(filePath).toFile
@@ -38,24 +40,20 @@ def lookup(colName: String)(using row: Row): Option[String] =
 
 def parseBoappaBoende(using row: Row): Option[BoappaEntry] =
 	for
-		fname <- lookup("Namn")
-		lname <- lookup("Efternamn")
 		email <- lookup("Epost").map(_.toLowerCase)
 		address <- lookup("Bostad").flatMap(_.split(" ").headOption)
 	yield (
 		apartment = Apartment(address),
-		person = Person(fname, lname, email)
+		person = BoappaPerson(email, lookup("Namn"), lookup("Efternamn"))
 	)
 
 def parseBoappaMembers(using row: Row): Option[BoappaEntry] =
 	for
-		fname <- lookup("Förnamn")
-		lname <- lookup("Efternamn")
 		email <- lookup("Mejladress").map(_.toLowerCase)
 		address <- lookup("Lägenhetsnummer (Föreningens)")
 	yield (
 		apartment = Apartment(address),
-		person = Person(fname, lname, email)
+		person = BoappaPerson(email, lookup("Förnamn"), lookup("Efternamn"))
 	)
 
 def parseParlan(using row: Row): Option[Membership] =
