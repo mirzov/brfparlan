@@ -1,229 +1,304 @@
 <!DOCTYPE html>
-<html lang="sv-se">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Brf Pärlan | Brf Pärlan</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.147.3">
-    
-    
-    
-      <meta name="robots" content="index, follow">
-    
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brf Pärlan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
 
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5530;
+        }
 
-    
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
 
-    
-      
-<link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+        .nav-menu a:hover {
+            color: #2c5530;
+        }
 
+        /* Header Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 85, 48, 0.4), rgba(44, 85, 48, 0.4)),
+                        url('images/header.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
 
-    
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-    
-    
-      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Brf Pärlan" />
-      <link href="/index.xml" rel="feed" type="application/rss+xml" title="Brf Pärlan" />
-      
-    
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
 
-    
-      <link rel="canonical" href="https://brfparlan.se/">
-    
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    <meta property="og:url" content="https://brfparlan.se/">
-  <meta property="og:site_name" content="Brf Pärlan">
-  <meta property="og:title" content="Brf Pärlan">
-  <meta property="og:description" content="Bostadsrättsförening Pärlan i Lund Webbsidan är under uppbyggnad">
-  <meta property="og:locale" content="sv_se">
-  <meta property="og:type" content="website">
+        .section h2 {
+            font-size: 2.5rem;
+            color: #2c5530;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-  <meta itemprop="name" content="Brf Pärlan">
-  <meta itemprop="description" content="Bostadsrättsförening Pärlan i Lund Webbsidan är under uppbyggnad">
-  <meta itemprop="datePublished" content="2025-05-09T21:58:11+02:00">
-  <meta itemprop="dateModified" content="2025-05-09T21:58:11+02:00">
-  <meta itemprop="wordCount" content="8">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Brf Pärlan">
-  <meta name="twitter:description" content="Bostadsrättsförening Pärlan i Lund Webbsidan är under uppbyggnad">
+        .section p, .section ul {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
 
-      
-    
-	
-  </head><body class="ma0 avenir bg-near-white production">
+        ul{
+            list-style: disc inside;
+        }
 
-    
+        /* About Section */
+        #about {
+            background: #f8f9fa;
+        }
 
-  
-  
-  <header class="cover bg-top" style="background-image: url('https://brfparlan.se/images/header.jpg');">
-    
-    <div class="bg-black-60">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Brf Pärlan
-      
-    </a>
-    <div class="flex-l items-center">
-      
+        /* Community Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-      
-      <div class="ananke-socials"></div>
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
 
-    </div>
-  </div>
-</nav>
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
 
-      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
-          Brf Pärlan
-        </h1>
-        
-      </div>
-    </div>
-  </header>
+        .feature-card h3 {
+            color: #2c5530;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
 
+        /* Contact Section */
+        #contact {
+            background: #909087;
+            color: white;
+        }
 
-    <main class="pb7" role="main">
-      
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray">
-    <h2 id="bostadsrättsförening-pärlan-i-lund">Bostadsrättsförening Pärlan i Lund</h2>
-<p>Webbsidan är under uppbyggnad</p>
+        #contact h2 {
+            color: white;
+        }
 
-  </article>
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
 
-  
-  
-  
-  
-  
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            color: #e3df00;
+        }
 
-  
-    <div class="pa3 pa4-ns w-100 w-70-ns center">
-      
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
 
-      <section class="w-100 mw8">
-        
-        
-          <div class="w-100 mb4 relative">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
-    <div class="flex-column flex-row-ns flex">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/about/" class="color-inherit dim link">
-            
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <h1 id="om-brf-pärlan">Om BRF Pärlan</h1>
-<p>BRF Pärlan är en äkta bostadsrättsförening på Brunnshög i Lund.</p>
-<p>Organisationsnummer: 769636-7791</p>
-<p>BRF profil på allabolag.se: <a href="https://www.allabolag.se/befattningshavare/bostadsr%C3%A4ttsf%C3%B6reningen-p%C3%A4rlan-i-lund/-/fastighetsbolag-lokaler/3JA7VE7I5YDUJ">(länk)</a></p>
-<p>Fastigheten var byggd färdigt i 2024 och består av 107 lägenheter och 3 lokaler som hyrs ut. Gatuadresser inkluderar Brunnshögsgatan 48, 50, 52, 54, 56, 58, samt Nobelparken 11 och 13.</p>
-<p>Spårvagnstationen Brunnshögstorget och Nobelparken ligger intill fastigheten.</p>
-<p><a href="https://www.brunnshogsapotek.se/">Brunnshögs Apotek</a> är en nuvarande hyresgäst.</p>
-<p>På kartan: <a href="https://www.eniro.se/kartor?c=55.720809,13.23408&amp;z=17.65">Eniro</a></p>
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">BRF Pärlan i Lund</div>
+            <ul class="nav-menu">
+                <li><a href="#about">Om föreningen</a></li>
+                <li><a href="#community">För medlemmar</a></li>
+                <li><a href="#contact">Kontaktinformation</a></li>
+            </ul>
         </div>
-        <a href="/about/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-      </div>
-    </div>
-  </div>
-</article>
+    </nav>
 
-          </div>
-        
-          <div class="w-100 mb4 relative">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
-    <div class="flex-column flex-row-ns flex">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/contacts/" class="color-inherit dim link">
-            
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <h1 id="kontaktinformation">Kontaktinformation</h1>
-<p>Boende och medlemmar rekommenderas att använda Boappa för kontakter med styrelsen</p>
-<p>(<strong>OBS</strong> ersätt ＠-symbolen med äkta snabel-a @ i e-postadresser nedan)</p>
-<p><strong>Styrelsen</strong>: styrelsen＠brfparlan.se</p>
-<p><strong>Vice-/ordföranden</strong>: ord＠brfparlan.se</p>
-<p><strong>IT-ansvarig</strong>: it＠brfparlan.se</p>
-<p><strong>Valberedning</strong>: valberedning＠brfparlan.se</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>BRF Pärlan i Lund</h1>
+            <p>Mitt i utvecklingen, mitt i gemenskapen</p>
         </div>
-        <a href="/contacts/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-      </div>
-    </div>
-  </div>
-</article>
+    </section>
 
-          </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>Om föreningen</h2>
+        <p>BRF Pärlan är en äkta bostadsrättsförening på Brunnshög i Lund.</p>
+        <p>Organisationsnummer: 769636-7791</p>
+        <p>BRF profil på allabolag.se: <a href="https://www.allabolag.se/befattningshavare/bostadsr%C3%A4ttsf%C3%B6reningen-p%C3%A4rlan-i-lund/-/fastighetsbolag-lokaler/3JA7VE7I5YDUJ">(länk)</a></p>
+        <p>Fastigheten var byggd färdigt i 2024 och består av 107 lägenheter och 3 lokaler som hyrs ut. Gatuadresser inkluderar Brunnshögsgatan 48, 50, 52, 54, 56, 58, samt Nobelparken 11 och 13.</p>
+        <p>Spårvagnstationen Brunnshögstorget och Nobelparken ligger intill fastigheten.</p>
+        <p><a href="https://www.brunnshogsapotek.se/">Brunnshögs Apotek</a> är en nuvarande hyresgäst.</p>
+        <p>På kartan: <a href="https://www.eniro.se/kartor?c=55.720809,13.23408&amp;z=17.65">Eniro</a></p>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section">
+        <h2>Information för medlemmar och boende</h2>
+        <p>Föreningen använder <a href="https://boappa.se/">Boappa</a> för att kommunicera med medlemmar. Alla medlemmar uppmuntras att skapa ett konto och hänga med Brf Pärlan där.</p>
+        <p>Gå med i Boappa:</p>
+        <ul>
+            <li>på Webben: <a href="https://app.boappa.se/">https://app.boappa.se/</a></li>
+            <li>på Android: <a href="https://play.google.com/store/apps/details?id=com.boappa.app&amp;hl=sv">Google Play</a></li>
+            <li>på iPhone: <a href="https://itunes.apple.com/se/app/boappa-2/id1330810316?ls=1&amp;mt=8">Apple App Store</a></li>
+        </ul>
+                
+        <!-- <div class="features-grid">
+            <div class="feature-card">
+                <h3>Shared Gardens</h3>
+                <p>Grow your own food in our community gardens, share knowledge, and enjoy fresh produce together.</p>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Kontaktinformation</h2>
+        <p>Boende och medlemmar rekommenderas att använda Boappa för kontakter med styrelsen</p>
         
-          <div class="w-100 mb4 relative">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
-    <div class="flex-column flex-row-ns flex">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/members/" class="color-inherit dim link">
-            
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <h1 id="information-för-medlemmar-och-boende">Information för medlemmar och boende</h1>
-<p>Föreningen använder <a href="https://boappa.se/">Boappa</a> för att kommunicera med medlemmar. Alla medlemmar uppmuntras att skapa ett konto och hänga med Brf Pärlan där.</p>
-<p>Gå med i Boappa:</p>
-<ul>
-<li>på Webben: <a href="https://app.boappa.se/">https://app.boappa.se/</a></li>
-<li>på Android: <a href="https://play.google.com/store/apps/details?id=com.boappa.app&amp;hl=sv">Google Play</a></li>
-<li>på iPhone: <a href="https://itunes.apple.com/se/app/boappa-2/id1330810316?ls=1&amp;mt=8">Apple App Store</a></li>
-</ul>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>Hitta hit</h4>
+                <p>Brunnshögsgatan 52 (samt 56, 58 m.m.)<br>
+                (spårvagnstationen Brunnshögstorget)</p>
+            </div>
+            <div class="contact-item">
+                <h4>E-post</h4>
+                <p>(<strong>OBS</strong> ersätt ＠-symbolen med äkta snabel-a @ i e-postadresser nedan)</p>
+                <p><strong>Styrelsen</strong>: styrelsen＠brfparlan.se</p>
+                <p><strong>Vice-/ordföranden</strong>: ord＠brfparlan.se</p>
+                <p><strong>IT-ansvarig</strong>: it＠brfparlan.se</p>
+                <p><strong>Valberedning</strong>: valberedning＠brfparlan.se</p>
+            </div>
+            <div class="contact-item">
+                <h4>Postaddress</h4>
+                <p>c/o OBOS Kärnhem Bostadsproduktion AB<br>
+                Box 217<br>
+                351 05 VÄXJÖ</p>
+            </div>
         </div>
-        <a href="/members/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-      </div>
-    </div>
-  </div>
-</article>
+    </section>
 
-          </div>
-        
-      </section>
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-      
-
-    </div>
-  
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://brfparlan.se/" >
-    &copy;  Brf Pärlan 2025 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
-
-  </body>
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
 </html>
