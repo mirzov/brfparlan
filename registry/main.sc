@@ -10,7 +10,12 @@ import scala.util.Using
 
 type Email = String
 case class Person(firstName: String, lastName: String, email: Email)
-case class BoappaPerson(email: Email, firstName: Option[String], lastName: Option[String])
+case class BoappaPerson(
+	email: Email,
+	firstName: Option[String],
+	lastName: Option[String],
+	phone: Option[String]
+)
 
 case class Apartment(address: String)
 
@@ -42,9 +47,11 @@ def parseBoappaBoende(using row: Row): Option[BoappaEntry] =
 	for
 		email <- lookup("Epost").map(_.toLowerCase)
 		address <- lookup("Bostad").flatMap(_.split(" ").headOption)
+		phone = lookup("Telefon").map: raw =>
+			if raw.startsWith("+") then raw else ("+46" + raw.stripPrefix("0"))
 	yield (
 		apartment = Apartment(address),
-		person = BoappaPerson(email, lookup("Namn"), lookup("Efternamn"))
+		person = BoappaPerson(email, lookup("Namn"), lookup("Efternamn"), phone)
 	)
 
 def parseBoappaMembers(using row: Row): Option[BoappaEntry] =
@@ -53,7 +60,7 @@ def parseBoappaMembers(using row: Row): Option[BoappaEntry] =
 		address <- lookup("Lägenhetsnummer (Föreningens)")
 	yield (
 		apartment = Apartment(address),
-		person = BoappaPerson(email, lookup("Förnamn"), lookup("Efternamn"))
+		person = BoappaPerson(email, lookup("Förnamn"), lookup("Efternamn"), None)
 	)
 
 def parseParlan(using row: Row): Option[Membership] =
@@ -80,6 +87,9 @@ lazy val parlanEntries: Seq[Membership] =
 
 lazy val boappaEntries: Seq[BoappaEntry] =
 	parseCsv("boappa_medlemslistan.csv")(parseBoappaMembers).sortBy(_.apartment.address)
+
+lazy val boappaBoendeEntries: Seq[BoappaEntry] =
+	parseCsv("boappa_boendelistan.csv")(parseBoappaBoende).sortBy(_.apartment.address)
 
 lazy val parlanApartments: Set[Apartment] =	parlanEntries.map(_.apartment).toSet
 lazy val boappaApartments: Set[Apartment] = boappaEntries.map(_.apartment).toSet
@@ -112,6 +122,23 @@ def listDifferingEmails(): Unit =
 			println(s"  Boappa: ${inBoappa.toSeq.sorted.mkString(", ")}")
 end listDifferingEmails
 
-listDifferingEmails()
-//parseObosCsv.foreach:
-//	entry => println(s"${entry.apartment.address} <- ${entry.person.email}")
+//println("Differing emails:")
+//listDifferingEmails()
+
+def exportPhoneBook(filename: String): Unit =
+	val file = root.resolve(filename).toFile
+	Using.resource(CSVWriter.open(file)): writer =>
+		writer.writeRow(Seq("Apartment", "Email", "FirstName", "LastName", "Phone"))
+		for{
+			(apartment = apartment, person = person) <- boappaBoendeEntries
+			phone <- person.phone
+		} writer.writeRow(Seq(
+			apartment.address,
+			person.email,
+			person.firstName.getOrElse(""),
+			person.lastName.getOrElse(""),
+			phone
+		))
+end exportPhoneBook
+
+//exportPhoneBook("phonebook.csv")
