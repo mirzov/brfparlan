@@ -1,5 +1,7 @@
 //> using scala 3.7.1
 //> using dep "com.github.tototoshi::scala-csv:2.0.0"
+//> using dep "com.sun.mail:jakarta.mail:2.0.2"
+
 import scala.util.Try
 
 import java.time.LocalDate
@@ -97,13 +99,13 @@ lazy val boappaApartments: Set[Apartment] = boappaEntries.map(_.apartment).toSet
 def missingInParlan: Set[Apartment] =	boappaApartments -- parlanApartments
 def missingInBoappa: Set[Apartment] = parlanApartments -- boappaApartments
 
-missingInParlan.toSeq.sortBy(_.address).foreach: apartment =>
-	println(s"Missing in Medlemsregister: ${apartment.address}")
+// missingInParlan.toSeq.sortBy(_.address).foreach: apartment =>
+// 	println(s"Missing in Medlemsregister: ${apartment.address}")
 
-missingInBoappa.toSeq.sortBy(_.address).foreach: apartment =>
-	println(s"Missing in Boappa: ${apartment.address}")
+// missingInBoappa.toSeq.sortBy(_.address).foreach: apartment =>
+// 	println(s"Missing in Boappa: ${apartment.address}")
 
-println(s"Total Pärlan apartments: ${parlanApartments.size}")
+// println(s"Total Pärlan apartments: ${parlanApartments.size}")
 
 def listDifferingEmails(): Unit =
 	type EmailLookup = Map[Apartment, Set[Email]]
@@ -142,3 +144,11 @@ def exportPhoneBook(filename: String): Unit =
 end exportPhoneBook
 
 //exportPhoneBook("phonebook.csv")
+
+ProtonMailer.sendEmail(
+	to = "oleg.mirzov@gmail.com",
+	subject = "Test email with from-name",
+	body = "This is a test email sent from a Scala script using ProtonMail SMTP."
+)
+
+println("Email sent.")
