@@ -1,4 +1,4 @@
-//> using scala 3.7.1
+//> using scala 3.8.1
 //> using dep "com.github.tototoshi::scala-csv:2.0.0"
 //> using dep "com.sun.mail:jakarta.mail:2.0.2"
 
@@ -144,11 +144,12 @@ def exportPhoneBook(filename: String): Unit =
 end exportPhoneBook
 
 //exportPhoneBook("phonebook.csv")
-
+val pdfExample = Paths.get("/home/oleg/Documents/Pärlan/jabra_puck_swish_nordea.pdf")
 ProtonMailer.sendEmail(
 	to = "oleg.mirzov@gmail.com",
 	subject = "Test email with from-name",
-	body = "This is a test email sent from a Scala script using ProtonMail SMTP."
+	body = "This is a test email sent from a Scala script using ProtonMail SMTP.",
+	attachment = Some(pdfExample)
 )
 
 println("Email sent.")
