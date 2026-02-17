@@ -1,4 +1,5 @@
 //> using scala 3.8.1
+//> using dep com.lihaoyi::os-lib:0.11.8
 
 import scala.io.Source
 
@@ -34,5 +35,9 @@ def pdfPages: Iterator[(apartment: String, startPage: Int, endPage: Int)] =
 		.map: pair =>
 			(apartment = pair.head.apartment, startPage = pair.head.page, endPage = pair.last.page - 1)
 
-pdfPages.foreach: pages =>
-	println(s"${pages.apartment}\t${pages.startPage}\t${pages.endPage}")
+def qpdfCommands = pdfPages.map: apt =>
+	s"""qpdf ./pdfs/inspektion_original.pdf --pages . ${apt.startPage}-${apt.endPage} -- ./pdfs/byApartment/${apt.apartment}.pdf"""
+
+def splitPdf: Unit =
+	qpdfCommands.foreach: cmdTxt =>
+		os.proc("bash", "-c", cmdTxt).call(stdout = os.Inherit, stderr = os.Inherit)
