@@ -1,6 +1,8 @@
 //> using scala 3.8.1
 //> using dep "com.github.tototoshi::scala-csv:2.0.0"
 //> using dep "com.sun.mail:jakarta.mail:2.0.2"
+import java.nio.file.Files
+import java.nio.file.Path
 
 import scala.util.Try
 
@@ -93,7 +95,7 @@ lazy val boappaEntries: Seq[BoappaEntry] =
 lazy val boappaBoendeEntries: Seq[BoappaEntry] =
 	parseCsv("boappa_boendelistan.csv")(parseBoappaBoende).sortBy(_.apartment.address)
 
-lazy val parlanApartments: Set[Apartment] =	parlanEntries.map(_.apartment).toSet
+lazy val parlanApartments: Set[Apartment] = parlanEntries.map(_.apartment).toSet
 lazy val boappaApartments: Set[Apartment] = boappaEntries.map(_.apartment).toSet
 
 def missingInParlan: Set[Apartment] =	boappaApartments -- parlanApartments
@@ -144,12 +146,32 @@ def exportPhoneBook(filename: String): Unit =
 end exportPhoneBook
 
 //exportPhoneBook("phonebook.csv")
-val pdfExample = Paths.get("/home/oleg/Documents/Pärlan/jabra_puck_swish_nordea.pdf")
-ProtonMailer.sendEmail(
-	to = "oleg.mirzov@gmail.com",
-	subject = "Test email with from-name",
-	body = "This is a test email sent from a Scala script using ProtonMail SMTP.",
-	attachment = Some(pdfExample)
-)
 
-println("Email sent.")
+val pdfsFolder = Paths.get(".").resolve("../besiktpdf/pdfs/byApartment").toAbsolutePath.normalize
+
+def sendExampleEmail(): Unit =
+	val olegPdf = pdfsFolder.resolve("52-1403.pdf")
+	val lucasPdf = pdfsFolder.resolve("52-1402.pdf")
+	ProtonMailer.sendEmail(
+		to = "oleg.mirzov@gmail.com",
+		attachments = Seq(olegPdf, lucasPdf)
+	)
+	println("Email sent.")
+end sendExampleEmail
+
+def besiktMailing: Seq[(email: Email, pdfs: Seq[Path])] =
+	parlanEntries.filter(_.isActiveOn(LocalDate.of(2026, 5, 1)))
+		.map: memb =>
+			(
+				email = memb.person.email,
+				pdf = pdfsFolder.resolve(s"${memb.apartment.address}.pdf")
+			)
+		.groupMap(_.email)(_.pdf)
+		.toSeq
+
+
+//println(besiktMailing.map(_.email).distinct.size)
+sendExampleEmail()
+
+// .foreach: (email, pdf) =>
+// 	println(s"Sending $pdf to $email")

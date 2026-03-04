@@ -14,10 +14,11 @@ object ProtonMailer:
   private val smtpHost = "smtp.protonmail.ch"
   private val smtpPort = "587"
   private val username = "besikt|brfparlan".replace("|", "@") + ".se"
-  private val fromName = "Tvåårsbesiktning Brf Pärlan"
+  private val subject  = "Tvåårsbesiktning Brf Pärlan"
   private val password = Files.readString(Paths.get("token.txt")).trim
+  private val html     = Files.readString(Paths.get("email.html"))
 
-  def sendEmail(to: String, subject: String, body: String, attachment: Option[Path]): Unit =
+  def sendEmail(to: String, attachments: Seq[Path] = Nil): Unit =
     val props = new Properties()
     props.put("mail.smtp.auth", "true")
     props.put("mail.smtp.starttls.enable", "true")
@@ -39,21 +40,22 @@ object ProtonMailer:
     //message.setSender(fromAddress)
     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to))
     message.setSubject(subject)
-    attachment match
-      case Some(path) =>
+    attachments match
+      case Seq() =>
+        message.setContent(html, "text/html; charset=utf-8")
+      case _ =>
         val multipart = new MimeMultipart()
 
         val textPart = new MimeBodyPart()
-        textPart.setText(body)
+        textPart.setContent(html, "text/html; charset=utf-8")
         multipart.addBodyPart(textPart)
 
-        val attachmentPart = new MimeBodyPart()
-        attachmentPart.attachFile(path.toFile)
-        multipart.addBodyPart(attachmentPart)
+        attachments.foreach: path =>
+          val attachmentPart = new MimeBodyPart()
+          attachmentPart.attachFile(path.toFile)
+          multipart.addBodyPart(attachmentPart)
 
         message.setContent(multipart)
-      case None =>
-        message.setText(body)
 
     Transport.send(message)
 
