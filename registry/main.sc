@@ -160,12 +160,12 @@ def besiktMailing: Seq[(email: Email, pdfs: Seq[Path])] =
 		.toSeq
 
 val boardEmails: Set[Email] = Set(
-	"oleg.mirzov@gmail.com", "daniel.jin93@gmail.com", "stina.helmbring@gmail.com", "nbaigabylova@gmail.com",
-	"helene.sjostrom@tetrapak.com", "ola@alexon.se", "vandermeulenlund@outlook.com"
+	"oleg.mirzov@gmail.com", "daniel.jin93@gmail.com", // "stina.helmbring@gmail.com", "nbaigabylova@gmail.com",
+	"ola@alexon.se", "vandermeulenlund@outlook.com", // "helene.sjostrom@tetrapak.com",
 )
 
 def sendBesiktEmails(): Unit = besiktMailing.collect:
-	case (email, pdfs) if boardEmails.contains(email) =>
+	case (email, pdfs) => // if boardEmails.contains(email)
 		ProtonMailer.sendEmail(
 			to = email,
 			attachments = pdfs
@@ -173,6 +173,6 @@ def sendBesiktEmails(): Unit = besiktMailing.collect:
 		println(s"Sent email to $email with attachments: ${pdfs.map(_.getFileName).mkString(", ")}")
 
 
-//println(besiktMailing.map(_.email).distinct.size)
-sendBesiktEmails()
+println(besiktMailing.map(_.email).distinct.size)
+//sendBesiktEmails()
 
