@@ -149,14 +149,14 @@ end exportPhoneBook
 
 val pdfsFolder = Paths.get(".").resolve("../besiktpdf/pdfs/byApartment").toAbsolutePath.normalize
 
-def besiktMailing: Seq[(email: Email, pdfs: Seq[Path])] =
+def besiktMailing: Seq[(email: Email, aparts: Seq[String])] =
 	parlanEntries.filter(_.isActiveOn(LocalDate.of(2026, 5, 1)))
 		.map: memb =>
 			(
 				email = memb.person.email,
-				pdf = pdfsFolder.resolve(s"${memb.apartment.address}.pdf")
+				apart = memb.apartment.address,
 			)
-		.groupMap(_.email)(_.pdf)
+		.groupMap(_.email)(_.apart)
 		.toSeq
 
 val boardEmails: Set[Email] = Set(
@@ -165,14 +165,15 @@ val boardEmails: Set[Email] = Set(
 )
 
 def sendBesiktEmails(): Unit = besiktMailing.collect:
-	case (email, pdfs) => // if boardEmails.contains(email)
-		ProtonMailer.sendEmail(
-			to = email,
-			attachments = pdfs
-		)
-		println(s"Sent email to $email with attachments: ${pdfs.map(_.getFileName).mkString(", ")}")
+	case (email, aparts) => // if boardEmails.contains(email)
+		// ProtonMailer.sendEmail(
+		// 	to = email,
+		// 	apart = aparts.mkString(", "),
+		// 	attachments = Nil
+		// )
+		println(s"Sent email to $email about apartment(s): $aparts")
 
 
-println(besiktMailing.map(_.email).distinct.size)
-//sendBesiktEmails()
+//println(besiktMailing.map(_.aparts).distinct.size)
+sendBesiktEmails()
 

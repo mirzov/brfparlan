@@ -14,11 +14,11 @@ object ProtonMailer:
   private val smtpHost = "smtp.protonmail.ch"
   private val smtpPort = "587"
   private val username = "besikt|brfparlan".replace("|", "@") + ".se"
-  private val subject  = "Tvåårsbesiktning Brf Pärlan"
+  private val subjectBase  = "Tvåårsbesiktning"
   private val password = Files.readString(Paths.get("token.txt")).trim
-  private val html     = Files.readString(Paths.get("email.html"))
+  private val html     = Files.readString(Paths.get("email_besikt_2026_2.html"))
 
-  def sendEmail(to: String, attachments: Seq[Path] = Nil): Unit =
+  def sendEmail(to: String, apart: String, attachments: Seq[Path] = Nil): Unit =
     val props = new Properties()
     props.put("mail.smtp.auth", "true")
     props.put("mail.smtp.starttls.enable", "true")
@@ -39,7 +39,7 @@ object ProtonMailer:
     message.setFrom(fromAddress)
     //message.setSender(fromAddress)
     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to))
-    message.setSubject(subject)
+    message.setSubject(s"$subjectBase, $apart")
     attachments match
       case Seq() =>
         message.setContent(html, "text/html; charset=utf-8")
