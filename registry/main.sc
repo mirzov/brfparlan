@@ -164,16 +164,17 @@ val boardEmails: Set[Email] = Set(
 	"ola@alexon.se", "vandermeulenlund@outlook.com", // "helene.sjostrom@tetrapak.com",
 )
 
-def sendBesiktEmails(): Unit = besiktMailing.collect:
+def sendBesiktEmails(): Unit = besiktMailing.drop(89).collect:
 	case (email, aparts) => // if boardEmails.contains(email)
-		// ProtonMailer.sendEmail(
-		// 	to = email,
-		// 	apart = aparts.mkString(", "),
-		// 	attachments = Nil
-		// )
-		println(s"Sent email to $email about apartment(s): $aparts")
+		val apartList = aparts.mkString(", ")
+		ProtonMailer.sendEmail(
+			to = email,
+			apart = apartList,
+			attachments = Nil
+		)
+		println(s"Sent email to $email about apartment(s): $apartList")
 
 
-//println(besiktMailing.map(_.aparts).distinct.size)
-sendBesiktEmails()
+println(besiktMailing.map(_.email).distinct.size)
+//sendBesiktEmails()
 
