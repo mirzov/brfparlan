@@ -328,12 +328,64 @@
             display: block;
             margin-bottom: 0.25rem;
         }
+        .fact-desc { color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 300; }
 
-        .fact-desc {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.95rem;
+        /* ── SLIDESHOW ── */
+        .slideshow {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .slideshow-img-wrap {
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .slideshow-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.25s ease;
+        }
+
+        .slideshow-img-wrap img.fading { opacity: 0; }
+
+        .slideshow-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0.1rem;
+        }
+
+        .slideshow-counter {
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            color: var(--mid);
             font-weight: 300;
         }
+
+        .slideshow-btns {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .ss-btn {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.2s, background 0.2s;
+            color: var(--charcoal);
+        }
+        .ss-btn:hover { border-color: var(--green); background: var(--green); color: #fff; }
+        .ss-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
         /* ── DISTRICT SECTION ── */
         .district-section {
@@ -383,17 +435,8 @@
         .aside-img {
             border-radius: 6px;
             overflow: hidden;
-            aspect-ratio: 4/3;
-            background: #ccc;
         }
-
-        .aside-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
+        .aside-img img { width: 100%; display: block; }
         .aside-img-caption {
             font-size: 0.8rem;
             color: var(--mid);
@@ -416,92 +459,34 @@
 
         .contact-layout {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: start;
         }
 
         .contact-lead {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 300;
             color: rgba(255,255,255,0.75);
-            margin-bottom: 2.5rem;
-            max-width: 480px;
+            margin-bottom: 1.5rem;
         }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        label {
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-        }
-
-        input, textarea {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 3px;
-            padding: 0.8rem 1rem;
-            color: #fff;
-            font-family: 'Source Serif 4', serif;
-            font-size: 1rem;
-            font-weight: 300;
-            outline: none;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--gold);
-            background: rgba(255,255,255,0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             background: var(--gold);
             color: #1a1a1a;
-            border: none;
-            border-radius: 3px;
-            padding: 1rem 2rem;
-            font-family: 'Source Serif 4', serif;
-            font-size: 1rem;
+            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: 0.04em;
-            cursor: pointer;
+            padding: 0.9rem 2rem;
+            border-radius: 3px;
             transition: background 0.2s, transform 0.15s;
             width: fit-content;
         }
-
-        .submit-btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-
-        .contact-details {
-            padding-top: 1rem;
-        }
-
+        .contact-link:hover { background: var(--gold-light); transform: translateY(-1px); }
+        .contact-details { padding-top: 1rem; }
         .contact-details h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
@@ -597,15 +582,10 @@
             }
 
             .fact-item:last-child { border-bottom: none; }
-
-            .form-row { grid-template-columns: 1fr; }
-
             .district-aside { position: static; }
-
             .hero { padding: 0 1.5rem 4rem; }
         }
-
-        @media (max-width: 560px) {
+        @media (max-width: 640px) {
             nav { padding: 1rem 1.25rem; }
             .container { padding: 0 1.25rem; }
             .hero h1 { font-size: 2.2rem; }
@@ -629,6 +609,10 @@
             <span class="hero-label">Ledig lokal – Brunnshög, Lund</span>
             <h1>567&thinsp;<span class="size">m²</span><br>i hjärtat av<br>Brunnshög</h1>
             <p class="hero-sub">Etablera din verksamhet i en av Lunds mest expansiva stadsdel.</p>
+            <a href="#kontakt" class="hero-cta">
+                Anmäl intresse
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
         </div>
     </section>
 
@@ -652,7 +636,7 @@
                     <ul class="check-list">
                         <li>567&nbsp;m² lokal i markplan</li>
                         <li>Stora skyltfönster mot Brunnshögsgatan</li>
-								<li>Pentry kök, förråd, toaletter</li>
+                        <li>Pentry kök, förråd, toaletter</li>
                         <li>Spårvagnshållplats direkt utanför</li>
                         <li>Parkering i P-hus Aurora och Niels Bohr i närheten</li>
                         <li>Fiber och nätverksinfrastruktur</li>
@@ -666,12 +650,28 @@
                 </div>
 
                 <div class="floor-plan-box">
-                    <!-- Replace src with the actual floor plan image -->
-                    <div style="background: #e8e4dc; display:flex; align-items:center; justify-content:center;">
-                        <img src="images/Lokal_1_planritning.png" alt="Planritning för ledig lokal i BRF Pärlan, Lund">
-                    </div>
+                    <img src="images/Lokal_1_planritning.png" alt="Planritning för ledig lokal i BRF Pärlan, Lund">
                     <p class="floor-plan-caption">Planritning – flexibel öppen planlösning, ca 567&nbsp;m²</p>
                 </div>
+                <div class="floor-plan-box">
+                    <div class="slideshow">
+                        <div class="slideshow-img-wrap">
+                            <img id="ssImg" src="" alt="">
+                        </div>
+                        <div class="slideshow-controls">
+                            <span class="slideshow-counter" id="ssCounter"></span>
+                            <div class="slideshow-btns">
+                                <button class="ss-btn" id="ssPrev" aria-label="Föregående bild">
+                                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                                </button>
+                                <button class="ss-btn" id="ssNext" aria-label="Nästa bild">
+                                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -731,21 +731,6 @@
                         <span class="tag">Expansiv tillväxt</span>
                     </div>
                 </div>
-
-                <div class="district-aside">
-                    <div>
-                        <div class="aside-img" style="background: #e2dfd8; display:flex; align-items:center; justify-content:center;">
-                            <img src="images/Lokal_1_bild_4.jfif">
-                        </div>
-                        <p class="aside-img-caption">Ljus och rymlig lokal</p>
-                    </div>
-                    <div>
-                        <div class="aside-img" style="background: #d0ccc4; display:flex; align-items:center; justify-content:center;">
-                            <img src="images/Lokal_1_omgivning.jfif">
-                        </div>
-                        <p class="aside-img-caption">Modern fastighet i Brunnshög</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -802,6 +787,50 @@
     </footer>
 
     <script>
+        // ═══════════════════════════════════════════════════════
+        //  SLIDESHOW – edit this list to add/remove photos.
+        //  Paths are relative to lokal.html (same folder).
+        // ═══════════════════════════════════════════════════════
+        const PHOTOS = [
+            { src: "images/Lokal_1_bild_4.jfif",   alt: "Ljus och rymlig lokal" },
+            { src: "images/Lokal_1_omgivning.jfif", alt: "Modern fastighet i Brunnshög" },
+            // Add more photos here, for example:
+            // { src: "images/Lokal_1_bild_1.jpg", alt: "Entrén" },
+            // { src: "images/Lokal_1_bild_2.jpg", alt: "Öppen yta" },
+        ];
+        // ═══════════════════════════════════════════════════════
+
+        const ssImg     = document.getElementById('ssImg');
+        const ssCounter = document.getElementById('ssCounter');
+        let current = 0;
+
+        function showSlide(index) {
+            current = (index + PHOTOS.length) % PHOTOS.length;
+            ssImg.classList.add('fading');
+            setTimeout(() => {
+                ssImg.src = PHOTOS[current].src;
+                ssImg.alt = PHOTOS[current].alt;
+                ssCounter.textContent = `${current + 1} / ${PHOTOS.length}`;
+                ssImg.classList.remove('fading');
+            }, 220);
+        }
+
+        // Initialise
+        ssImg.src = PHOTOS[0].src;
+        ssImg.alt = PHOTOS[0].alt;
+        ssCounter.textContent = `1 / ${PHOTOS.length}`;
+
+        document.getElementById('ssPrev').addEventListener('click', () => showSlide(current - 1));
+        document.getElementById('ssNext').addEventListener('click', () => showSlide(current + 1));
+
+        // Swipe support on the image
+        let touchStartX = 0;
+        ssImg.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+        ssImg.addEventListener('touchend',   e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 40) showSlide(current + (dx < 0 ? 1 : -1));
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
@@ -821,20 +850,8 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12 });
-
+        }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Placeholder form submit
-        document.querySelector('.submit-btn').addEventListener('click', () => {
-            const email = document.getElementById('email').value.trim();
-            const name = document.getElementById('name').value.trim();
-            if (!email || !name) {
-                alert('Vänligen fyll i namn och e-postadress.');
-                return;
-            }
-            alert('Tack för ditt intresse! Vi återkommer inom kort.');
-        });
     </script>
 </body>
 </html>
