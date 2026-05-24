@@ -406,6 +406,14 @@
             font-weight: 300;
         }
 
+        .district-aside {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            top: 100px;
+        }
+
+
         .tag-row {
             display: flex;
             flex-wrap: wrap;
@@ -424,12 +432,10 @@
             border-radius: 100px;
         }
 
-        .district-aside {
+        .about-aside {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            position: sticky;
-            top: 100px;
         }
 
         .aside-img {
@@ -608,7 +614,7 @@
         <div>
             <span class="hero-label">Ledig lokal – Brunnshög, Lund</span>
             <h1>567&thinsp;<span class="size">m²</span><br>i hjärtat av<br>Brunnshög</h1>
-            <p class="hero-sub">Etablera din verksamhet i en av Lunds mest expansiva stadsdel.</p>
+            <p class="hero-sub">Etablera din verksamhet i Lunds mest expansiva stadsdelen!</p>
             <a href="#kontakt" class="hero-cta">
                 Anmäl intresse
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -649,15 +655,19 @@
                     </a>
                 </div>
 
-                <div class="floor-plan-box">
-                    <img src="images/Lokal_1_planritning.png" alt="Planritning för ledig lokal i BRF Pärlan, Lund">
-                    <p class="floor-plan-caption">Planritning – flexibel öppen planlösning, ca 567&nbsp;m²</p>
-                </div>
-                <div class="floor-plan-box">
+                <div class="about-aside">
+                    <div class="floor-plan-box">
+                        <img src="images/Lokal_1_planritning.png" alt="Planritning för ledig lokal i BRF Pärlan, Lund">
+                        <p class="floor-plan-caption">Planritning – flexibel öppen planlösning, ca 567&nbsp;m²</p>
+                    </div>
+
                     <div class="slideshow">
                         <div class="slideshow-img-wrap">
-                            <img id="ssImg" src="" alt="">
+                            <a href="" id="ssImgLink" target="_blank">
+                                <img id="ssImg" src="" alt="">
+                            </a>
                         </div>
+                        <div><span class="floor-plan-caption" id="ssCaption"></span></div>
                         <div class="slideshow-controls">
                             <span class="slideshow-counter" id="ssCounter"></span>
                             <div class="slideshow-btns">
@@ -731,6 +741,15 @@
                         <span class="tag">Expansiv tillväxt</span>
                     </div>
                 </div>
+                <div class="district-aside">
+                    <div>
+                        <div class="aside-img" style="background: #d0ccc4; display:flex; align-items:center; justify-content:center;">
+                            <img src="images/Lokal_1_omgivning.jfif">
+                        </div>
+                        <p class="aside-img-caption">Modern fastighet i Brunnshög</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -792,33 +811,40 @@
         //  Paths are relative to lokal.html (same folder).
         // ═══════════════════════════════════════════════════════
         const PHOTOS = [
-            { src: "images/Lokal_1_bild_4.jfif",   alt: "Ljus och rymlig lokal" },
-            { src: "images/Lokal_1_omgivning.jfif", alt: "Modern fastighet i Brunnshög" },
-            // Add more photos here, for example:
-            // { src: "images/Lokal_1_bild_1.jpg", alt: "Entrén" },
-            // { src: "images/Lokal_1_bild_2.jpg", alt: "Öppen yta" },
+            { src: "images/lokal1/DSC00489.JPG",   alt: "Nord-västra delen av lokalen" },
+            { src: "images/lokal1/DSC00490.JPG",   alt: "Vy mot söder" },
+            { src: "images/lokal1/DSC00494.JPG",   alt: "Vy mot norr" },
+            { src: "images/lokal1/DSC00491.JPG",   alt: "Fönstren på västra sidan tittar mot sydväst" },
+            { src: "images/lokal1/DSC00492.JPG",   alt: "Pentry köket" },
+            { src: "images/lokal1/DSC00499.JPG",   alt: "Toalett 1" },
+            { src: "images/lokal1/DSC00500.JPG",   alt: "Toalett 3" },
         ];
         // ═══════════════════════════════════════════════════════
 
         const ssImg     = document.getElementById('ssImg');
         const ssCounter = document.getElementById('ssCounter');
+        const ssCaption = document.getElementById('ssCaption');
+        const ssImgLink = document.getElementById('ssImgLink');
         let current = 0;
+
+        function initImage(index) {
+            ssImg.src = PHOTOS[index].src;
+            ssImg.alt = PHOTOS[index].alt;
+            ssCounter.textContent = `${index + 1} / ${PHOTOS.length}`;
+            ssCaption.textContent = PHOTOS[index].alt;
+            ssImgLink.href = PHOTOS[index].src;
+        }
 
         function showSlide(index) {
             current = (index + PHOTOS.length) % PHOTOS.length;
             ssImg.classList.add('fading');
             setTimeout(() => {
-                ssImg.src = PHOTOS[current].src;
-                ssImg.alt = PHOTOS[current].alt;
-                ssCounter.textContent = `${current + 1} / ${PHOTOS.length}`;
+                initImage(current);
                 ssImg.classList.remove('fading');
             }, 220);
         }
 
-        // Initialise
-        ssImg.src = PHOTOS[0].src;
-        ssImg.alt = PHOTOS[0].alt;
-        ssCounter.textContent = `1 / ${PHOTOS.length}`;
+        initImage(0);
 
         document.getElementById('ssPrev').addEventListener('click', () => showSlide(current - 1));
         document.getElementById('ssNext').addEventListener('click', () => showSlide(current + 1));
