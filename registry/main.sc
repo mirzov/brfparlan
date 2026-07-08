@@ -147,7 +147,7 @@ end exportPhoneBook
 
 //exportPhoneBook("phonebook.csv")
 
-val pdfsFolder = Paths.get(".").resolve("../besiktpdf/pdfs/byApartment").toAbsolutePath.normalize
+val pdfsFolder = Paths.get(".").resolve("../besiktpdf/pdfs/GB1-Bygg_byApartment").toAbsolutePath.normalize
 
 def besiktMailing: Seq[(email: Email, aparts: Seq[String])] =
 	parlanEntries.filter(_.isActiveOn(LocalDate.of(2026, 5, 1)))
@@ -160,21 +160,21 @@ def besiktMailing: Seq[(email: Email, aparts: Seq[String])] =
 		.toSeq
 
 val boardEmails: Set[Email] = Set(
-	"oleg.mirzov@gmail.com", "daniel.jin93@gmail.com", // "stina.helmbring@gmail.com", "nbaigabylova@gmail.com",
-	"ola@alexon.se", "vandermeulenlund@outlook.com", // "helene.sjostrom@tetrapak.com",
+	//"oleg.mirzov@gmail.com", //"daniel.jin93@gmail.com", "stina.helmbring@gmail.com", "nbaigabylova@gmail.com",
+	"aidahosseini0606@gmail.com",
+	//"ola@alexon.se", "vandermeulenlund@outlook.com", "helene.sjostrom@tetrapak.com",
 )
 
-def sendBesiktEmails(): Unit = besiktMailing.drop(89).collect:
-	case (email, aparts) => // if boardEmails.contains(email)
+def sendBesiktEmails(): Unit = besiktMailing.collect:
+	case (email, aparts) if boardEmails.contains(email) =>
 		val apartList = aparts.mkString(", ")
 		ProtonMailer.sendEmail(
 			to = email,
 			apart = apartList,
-			attachments = Nil
+			attachments = aparts.map(apart => pdfsFolder.resolve(s"$apart.pdf"))
 		)
 		println(s"Sent email to $email about apartment(s): $apartList")
 
 
 println(besiktMailing.map(_.email).distinct.size)
 //sendBesiktEmails()
-

@@ -14,9 +14,9 @@ object ProtonMailer:
   private val smtpHost = "smtp.protonmail.ch"
   private val smtpPort = "587"
   private val username = "besikt|brfparlan".replace("|", "@") + ".se"
-  private val subjectBase  = "Tvåårsbesiktning"
+  private val subjectBase  = "Besiktning (2 år) rapport"
   private val password = Files.readString(Paths.get("token.txt")).trim
-  private val html     = Files.readString(Paths.get("email_besikt_2026_2.html"))
+  private val html     = Files.readString(Paths.get("email_besikt_2026_3.html"))
 
   def sendEmail(to: String, apart: String, attachments: Seq[Path] = Nil): Unit =
     val props = new Properties()
