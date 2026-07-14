@@ -29,10 +29,12 @@ case class Membership(
 	startDate: LocalDate,
 	endDate: Option[LocalDate] = None
 ):
-	def isActiveOn(date: LocalDate): Boolean =
-		(!startDate.isAfter(date)) && endDate.forall(_.isAfter(date))
+	def isActiveOn(date: LocalDate): Boolean = isActiveBefore(date) && isActiveAfter(date)
 
-	def isActiveNow: Boolean = isActiveOn(LocalDate.now())
+	def isActiveBefore(date: LocalDate): Boolean = !startDate.isAfter(date)
+	def isActiveAfter(date: LocalDate): Boolean = endDate.forall(_.isAfter(date))
+
+	def isActiveAfterNow: Boolean = isActiveAfter(LocalDate.now())
 end Membership
 
 val root = Paths.get("/home/oleg/Documents/Pärlan")
@@ -112,7 +114,7 @@ def missingInBoappa: Set[Apartment] = parlanApartments -- boappaApartments
 def listDifferingEmails(): Unit =
 	type EmailLookup = Map[Apartment, Set[Email]]
 	val parlanEmails: EmailLookup = parlanEntries
-		.filter(_.isActiveNow)
+		.filter(_.isActiveOn(LocalDate.now()))
 		.groupMapReduce(_.apartment)(m => Set(m.person.email))(_ ++ _)
 	val boappaEmails: EmailLookup = boappaEntries
 		.groupMapReduce(_.apartment)(e => Set(e.person.email))(_ ++ _)
@@ -150,7 +152,7 @@ end exportPhoneBook
 val pdfsFolder = Paths.get(".").resolve("../besiktpdf/pdfs/GB1-Bygg_byApartment").toAbsolutePath.normalize
 
 def besiktMailing: Seq[(email: Email, aparts: Seq[String])] =
-	parlanEntries.filter(_.isActiveOn(LocalDate.of(2026, 5, 1)))
+	parlanEntries.filter(_.isActiveAfterNow)
 		.map: memb =>
 			(
 				email = memb.person.email,
@@ -159,21 +161,19 @@ def besiktMailing: Seq[(email: Email, aparts: Seq[String])] =
 		.groupMap(_.email)(_.apart)
 		.toSeq
 
-val boardEmails: Set[Email] = Set(
-	//"oleg.mirzov@gmail.com", //"daniel.jin93@gmail.com", "stina.helmbring@gmail.com", "nbaigabylova@gmail.com",
-	"aidahosseini0606@gmail.com",
-	//"ola@alexon.se", "vandermeulenlund@outlook.com", "helene.sjostrom@tetrapak.com",
-)
+val boardEmails: Set[Email] = Set()
 
-def sendBesiktEmails(): Unit = besiktMailing.collect:
-	case (email, aparts) if boardEmails.contains(email) =>
-		val apartList = aparts.mkString(", ")
-		ProtonMailer.sendEmail(
-			to = email,
-			apart = apartList,
-			attachments = aparts.map(apart => pdfsFolder.resolve(s"$apart.pdf"))
-		)
-		println(s"Sent email to $email about apartment(s): $apartList")
+def sendBesiktEmails(): Unit = besiktMailing
+	.sortBy(_.aparts.head)
+	.collect:
+		case (email, aparts) => //if boardEmails.contains(email) =>
+			val apartList = aparts.mkString(", ")
+			ProtonMailer.sendEmail(
+				to = email,
+				apart = apartList,
+				attachments = aparts.map(apart => pdfsFolder.resolve(s"$apart.pdf"))
+			)
+			println(s"Sent email to $email about apartment(s): $apartList")
 
 
 println(besiktMailing.map(_.email).distinct.size)
