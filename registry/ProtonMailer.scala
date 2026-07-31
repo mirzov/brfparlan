@@ -1,4 +1,3 @@
-import jakarta.mail.*
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import jakarta.mail.internet.MimeBodyPart
@@ -8,17 +7,22 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.Path
 import java.util.Properties
+import jakarta.mail.Message.RecipientType
+import jakarta.mail.Session
+import jakarta.mail.Authenticator
+import jakarta.mail.PasswordAuthentication
+import jakarta.mail.Transport
 
 
 object ProtonMailer:
   private val smtpHost = "smtp.protonmail.ch"
   private val smtpPort = "587"
-  private val username = "besikt|brfparlan".replace("|", "@") + ".se"
-  private val subjectBase  = "Besiktning (2 år) rapport"
+  private val username = "it|brfparlan".replace("|", "@") + ".se"
+  private val subject  = "Pärlan - viktig info om ekonomisk förvaltning"
   private val password = Files.readString(Paths.get("token.txt")).trim
-  private val html     = Files.readString(Paths.get("email_besikt_2026_3.html"))
+  private val html     = Files.readString(Paths.get("email_bredablick.html"))
 
-  def sendEmail(to: String, apart: String, attachments: Seq[Path] = Nil): Unit =
+  def sendEmail(to: Seq[String], recType: RecipientType, attachments: Seq[Path] = Nil): Unit =
     val props = new Properties()
     props.put("mail.smtp.auth", "true")
     props.put("mail.smtp.starttls.enable", "true")
@@ -38,8 +42,9 @@ object ProtonMailer:
     //fromAddress.setPersonal(fromName)
     message.setFrom(fromAddress)
     //message.setSender(fromAddress)
-    message.addRecipient(Message.RecipientType.TO, new InternetAddress(to))
-    message.setSubject(s"$subjectBase, $apart")
+    to.foreach: recipient =>
+      message.addRecipient(recType, new InternetAddress(recipient))
+    message.setSubject(subject)
     attachments match
       case Seq() =>
         message.setContent(html, "text/html; charset=utf-8")
