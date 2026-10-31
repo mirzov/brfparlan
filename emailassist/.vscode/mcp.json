@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "proton-imap-readonly": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "imap-mcp-server"
+      ],
+      "env": {
+        "IMAP_MCP_READ_ONLY": "true",
+        "NODE_EXTRA_CA_CERTS": "/home/oleg/workspace/parlan/brfparlan/emailassist/proton-bridge-cert.pem"
+      }
+    },
+    "emailassist-metals": {
+      "url": "http://localhost:42599/mcp",
+      "type": "http"
+    }
+  }
+}
