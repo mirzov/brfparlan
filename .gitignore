@@ -2,3 +2,11 @@
 .metals/
 .scala-build/
 .vscode/
+proton-bridge-cert.pem
+.brf/
+boappa/boappa-chat-archive.md
+boappa/chatRoomMessagesRequest.txt
+boappa/chatRoomMessagesResponse.json
+.gitignore
+boappa/getChatRoomsListRequest.txt
+boappa/getChatRoomsListResponse.json
