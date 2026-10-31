@@ -12,6 +12,19 @@
         "NODE_EXTRA_CA_CERTS": "/home/oleg/workspace/parlan/brfparlan/emailassist/proton-bridge-cert.pem"
       }
     },
+    "brf-mail-mcp": {
+      "type": "stdio",
+      "command": "scala-cli",
+      "args": [
+        "run",
+        "/home/oleg/workspace/parlan/brfparlan/emailassist",
+        "--main-class",
+        "se.brfparlan.emailassist.mcp.BrfMailMcp"
+      ],
+      "env": {
+        "JAVA_HOME": "/usr/lib/jvm/java-25-openjdk-amd64"
+      }
+    },
     "emailassist-metals": {
       "url": "http://localhost:42599/mcp",
       "type": "http"
