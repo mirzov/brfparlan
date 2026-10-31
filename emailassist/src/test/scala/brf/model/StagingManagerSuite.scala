@@ -45,6 +45,17 @@ class StagingManagerSuite extends munit.FunSuite:
     assertEquals(staging.readAll().map(_.size), Right(50))
   }
 
+  test("remove deletes only the first matching entry") {
+    val staging = StagingManager(tempFile())
+    val other = move.copy(messageId = "<m2@proton.me>")
+    Seq(move, other, move).foreach(p => assertEquals(staging.append(p), Right(())))
+    assertEquals(staging.remove(move), Right(()))
+    assertEquals(staging.readAll(), Right(Vector(other, move)))
+    assertEquals(staging.remove(move), Right(()))
+    assert(staging.remove(move).isLeft)
+    assertEquals(staging.readAll(), Right(Vector(other)))
+  }
+
   test("corrupt file produces a Left instead of throwing") {
     val file = tempFile()
     Files.createDirectories(file.getParent)

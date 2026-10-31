@@ -2,7 +2,10 @@ package se.brfparlan.emailassist.model
 
 import upickle.default.ReadWriter
 
-sealed trait ActionProposal derives ReadWriter
+sealed trait ActionProposal derives ReadWriter:
+  def messageId: String
+  def sourceFolder: String
+  def reason: String
 
 final case class MoveToFolder(
     messageId: String,

@@ -34,6 +34,18 @@ final class StagingManager(file: Path = StagingManager.DefaultFile):
       }
     }
 
+  /** Removes the first entry equal to `proposal`; entries appended meanwhile are kept. */
+  def remove(proposal: ActionProposal): Either[String, Unit] =
+    jvmLock.synchronized {
+      withFileLock {
+        readUnsafe().flatMap { existing =>
+          existing.indexOf(proposal) match
+            case -1 => Left(s"proposal is no longer present in $file")
+            case i  => writeUnsafe(existing.patch(i, Nil, 1))
+        }
+      }
+    }
+
   private def readUnsafe(): Either[String, Vector[ActionProposal]] =
     if !Files.exists(file) then Right(Vector.empty)
     else
