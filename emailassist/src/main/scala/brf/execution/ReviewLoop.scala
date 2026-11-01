@@ -36,7 +36,9 @@ final class ReviewLoop(
   private enum Outcome:
     case Executed, Rejected, Failed, Stop
 
-  def run(proposals: Vector[ActionProposal]): ReviewSummary =
+  def run(unordered: Vector[ActionProposal]): ReviewSummary =
+    val (drafts, others) = unordered.partition(_.isInstanceOf[DraftReply])
+    val proposals = drafts ++ others
     val outcomes = proposals.iterator.zipWithIndex
       .map((p, i) => review(p, i + 1, proposals.size))
       .takeWhile(_ != Outcome.Stop)
