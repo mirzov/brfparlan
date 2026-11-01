@@ -25,9 +25,10 @@
         "JAVA_HOME": "/usr/lib/jvm/java-25-openjdk-amd64"
       }
     },
-    "emailassist-metals": {
-      "url": "http://localhost:42599/mcp",
-      "type": "http"
+    "google-drive": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@piotr-agier/google-drive-mcp"]
     }
   }
 }
