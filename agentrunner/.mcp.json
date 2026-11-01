@@ -1,5 +1,5 @@
 {
-  "servers": {
+  "mcpServers": {
     "proton-imap-readonly": {
       "type": "stdio",
       "command": "npx",

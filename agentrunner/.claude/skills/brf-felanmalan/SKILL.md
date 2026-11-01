@@ -1,6 +1,6 @@
 ---
 name: brf-felanmalan
-description: Felanmälan, garantiärenden (OBOS/Envise, AF Bygg), teknisk förvaltare Hagtorn, hiss, städ, sprickor och 2-årsbesiktning i Brf Pärlan. Använd när ett mejl rör fel eller skador i lägenhet eller fastighet, garantiåtgärder, städ som inte utförs eller besiktning.
+description: Felanmälan, garantiärenden (OBOS/Envise, AF Bygg), totalförvaltare Bredablick, hiss, städ, sprickor och 2-årsbesiktning i Brf Pärlan. Använd när ett mejl rör fel eller skador i lägenhet eller fastighet, garantiåtgärder, städ som inte utförs eller besiktning.
 ---
 
 # Felanmälan, garanti och besiktning
@@ -17,11 +17,12 @@ Detta stämmer med styrelsens ståndpunkt i flera ärenden (t.ex. sprickor/vatte
 |---|---|
 | Fel/brist i lägenhet som är byggfel under garantitid | Entreprenören via OBOS eftermarknad (Envise Service). Boende anmäler själv. Se [references/kontaktvagar.md](references/kontaktvagar.md) |
 | Fel i allmänna utrymmen (loftgång, trapphus, hiss, ventilation) | Styrelsen anmäler via föreningens gemensamma brf-adress i Envise (OBOS-råd) |
-| Driftfel, skötsel, städ, nyckelboxar, namnskyltar, porttelefon | Hagtorn Fastighetsservice (`felanmalan@hagtornservice.se`) |
+| Driftfel, skötsel, namnskyltar, porttelefon | Bredablick (teknisk förvaltning). `[BEKRÄFTA felanmälningsadress]` |
+| Städ | `[BEKRÄFTA: Hagtorn eller Bredablick, avtalsstatus efter sommaren 2026]` |
 | El/nätverk/hjärtstartare-installation | GC Gruppen (`felanmalan@gcgruppen.com`) |
 | Hiss står still eller kräver service | Hissleverantören OTIS (service/felanmälan). Styrelsen får servicerapport via formulär |
-| Värme/ventilationslarm, fjärrvärmeväxlare | Hagtorn och Styr Entreprenad (reglering/DUC). Styrelsen driver frågor om systemåtkomst |
-| Akuta fel (vattenläcka, låsproblem) | Hagtorn, kontaktväg enligt Kontakter i Boappa `[verifiera jourrutin]`. Skriv inga telefonnummer i mejl, hänvisa till Boappa |
+| Värme/ventilationslarm, fjärrvärmeväxlare | Bredablick (teknisk förvaltning) och Styr Entreprenad (reglering/DUC). Styrelsen driver frågor om systemåtkomst |
+| Akuta fel (vattenläcka, låsproblem) | Bredablick, jourrutin `[BEKRÄFTA]`. Skriv inga telefonnummer i mejl, hänvisa till styrelsen |
 
 Boende ska ange **adress, lägenhetsnummer och namn** samt tydlig beskrivning med bilder.
 
@@ -35,7 +36,7 @@ Bakgrund (se [references/tvaarsbesiktning.md](references/tvaarsbesiktning.md)):
 - Sprickor i betongelement är vanliga i nyproduktion. Medlem kan kräva fackmässig åtgärd och hänvisa till E-anmärkningen.
 - OBOS lämnar inte ut sin historiska lista över åtgärdade fel. Styrelsen byggde därför egna underlag via utskick till medlemmar (adress `besikt@`, `fastighet@`).
 
-## Städ och skötsel (Hagtorn)
+## Städ och skötsel (utförare `[BEKRÄFTA]`)
 
 - Avtalet anger olika städfrekvens per utrymme. Gästlägenhet och mötesrum städas sista tisdagen i varje månad (dagen är därför inte bokningsbar).
 - Loftgångar, trapphus och trappor saknar fast dag. Utförd städning ska synas i PHM-kundportalen. Under 2025–2026 har städning uteblivit i dessa utrymmen och styrelsen (Ola) har drivit frågan. Städning är en viktig punkt vid omförhandling av avtal.
@@ -53,4 +54,4 @@ Bakgrund (se [references/tvaarsbesiktning.md](references/tvaarsbesiktning.md)):
 - 2-årsbesiktningens tekniska uppföljning: `Folders/BrfPärlan/Tekniker/Tvåårsbesiktning`.
 - Upphandling/dialog om besiktning och tidplan: `Folders/BrfPärlan/BesiktningTvåÅr`.
 - Hissrapporter: `Folders/BrfPärlan/Tekniker/Service rapporter`.
-- Städ, skötsel, PHM-portalen (Hagtorn): `Folders/BrfPärlan/Tekniker/Förvaltning`.
+- Städ, skötsel, PHM-kundportalen: `Folders/BrfPärlan/Tekniker/Förvaltning`.

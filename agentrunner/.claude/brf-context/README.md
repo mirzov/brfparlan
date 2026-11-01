@@ -8,7 +8,7 @@ Kunskapen är utvunnen ur föreningens e-post t.o.m. 2026-10-31. Allt som kan ha
 
 | Nivå | Fil | När den läses |
 |---|---|---|
-| 1 | `.claude/copilot-instructions.md` | Alltid (kort: regler, språk, säkerhet) |
+| 1 | `.claude/CLAUDE.md` | Alltid (kort: regler, språk, säkerhet) |
 | 2 | `.claude/skills/brf-parlan/SKILL.md` | Först vid varje mejlärende (index över ämnen) |
 | 3 | `.claude/skills/<ämne>/SKILL.md` | När ämnet matchar mejlet |
 | 4 | `.claude/skills/<ämne>/references/*.md` | Detaljer, mallar och kontaktvägar för ämnet |
@@ -21,5 +21,5 @@ Kunskapen är utvunnen ur föreningens e-post t.o.m. 2026-10-31. Allt som kan ha
 
 ## Underhåll
 
-- Lägg aldrig lösenord, portkoder, nyckelboxkoder, personnummer eller privata telefonnummer här. De finns i Boappa eller hos berörd styrelsemedlem.
+- Lägg aldrig lösenord, portkoder, nyckelboxkoder, personnummer eller privata telefonnummer här. De finns hos berörd styrelsemedlem, inte i dessa filer.
 - Uppdatera `Senast verifierad` när en uppgift kontrollerats mot ny e-post.

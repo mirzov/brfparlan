@@ -22,12 +22,12 @@ Läs bara de skills som matchar mejlets ämne. Det håller kontexten liten.
 | Hur svaret ska formuleras, signatur | `brf-svarsstil` |
 | Ansökan/förlängning av andrahandsuthyrning, hyresgäst, hyresavtal | `brf-andrahand` |
 | Lägenhetsköp, överlåtelse, medlemsansökan, mäklare, nya ägare, namnbyte i medlemsregister | `brf-medlemmar` |
-| Fel i lägenhet/fastighet, garanti, OBOS/Envise, Hagtorn, hiss, sprickor, städ, 2-årsbesiktning | `brf-felanmalan` |
+| Fel i lägenhet/fastighet, garanti, OBOS/Envise, Bredablick, hiss, sprickor, städ, 2-årsbesiktning | `brf-felanmalan` |
 | Laddstolpe, Virta, anmälan till laddning, pris | `brf-laddning` |
 | Boka gästlägenhet eller mötesrum, verkstad, kommersiell lokal | `brf-lokaler` |
 | Förvaltare, avgift, faktura, månadsrapport, bank, revisor, försäkring, budget | `brf-ekonomi` |
 | Dagordning, protokoll, stämma, valberedning, firmateckning | `brf-styrelsemoten` |
-| Boappa, e-postlistor, webbplats, domän, delade filer, system-inbjudningar | `brf-it-boappa` |
+| E-postlistor, webbplats, domän, PHM Digital-konton, system-inbjudningar | `brf-it` (ej skapad än) |
 | Enkel fråga från boende (försäkring, husdjur, nycklar, ritningar m.m.) | `brf-faq-boende` |
 | Innergård, växter, balkongskydd, inglasning, parkering, brandskydd, SBA | `brf-utemiljo` |
 | Kommun, myndighet, nyhetsbrev, kalenderinbjudan, leverantörsreklam | `brf-externa` |
@@ -35,7 +35,7 @@ Läs bara de skills som matchar mejlets ämne. Det håller kontexten liten.
 ## Gemensamma principer
 
 - Styrelsen beslutar. Assistenten förbereder.
-- Boende ska i första hand hänvisas till rätt instans (entreprenör, Hagtorn, OBOS, Bredablick) i stället för att styrelsen blir mellanhand.
+- Boende ska i första hand hänvisas till rätt instans (entreprenör, Bredablick, OBOS) i stället för att styrelsen blir mellanhand.
 - Allt som rör personliga ekonomiska eller hälsorelaterade förhållanden är känsligt (se `brf-sortering`, avsnitt Känsliga ärenden).
 - Aktuella roller, system och kontakter: `brf-context/foreningen.md` och `brf-context/kontakter.md`.
 

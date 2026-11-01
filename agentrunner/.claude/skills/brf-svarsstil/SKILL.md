@@ -24,7 +24,7 @@ description: Ton, struktur, signaturer och återanvändbara svarsmallar på sven
 | Avsändare | Hälsning | Avslutning |
 |---|---|---|
 | Styrelsen (standard) | "Hej <förnamn>," | "Vänliga hälsningar,\nStyrelsen Brf Pärlan i Lund" |
-| IT-ansvarig (IT, Boappa, e-post) | "Hej <förnamn>," | "Mvh,\n/Oleg\nIT-ansvarig, Brf Pärlan" |
+| IT-ansvarig (IT, webb, e-post) | "Hej <förnamn>," | "Mvh,\n/Oleg\nIT-ansvarig, Brf Pärlan" |
 | Bokningar (gästlägenhet/mötesrum) | "Hej <förnamn>," | "Med vänlig hälsning,\nPärlans styrelse" |
 
 Använd formuleringen "Hej," när mottagarens namn är okänt. Skriv aldrig under med en annan ledamots namn.
@@ -38,7 +38,7 @@ Använd formuleringen "Hej," när mottagarens namn är okänt. Skriv aldrig unde
 ## Kontrollista före DraftReply
 
 1. Besvarar utkastet frågan direkt?
-2. Är rätt instans angiven (entreprenör, Hagtorn, OBOS, Bredablick)?
+2. Är rätt instans angiven (entreprenör, Bredablick, OBOS)?
 3. Är faktauppgifter hämtade från skill eller tråd, inte gissade?
 4. Finns inga känsliga uppgifter?
 5. Är signaturen rätt?

@@ -5,3 +5,8 @@ issueMessagesRequest.txt
 responseToIssueListRequest.json
 responseToIssueMessagesRequest.json
 
+boappa-chat-archive.md
+chatRoomMessagesRequest.txt
+chatRoomMessagesResponse.json
+getChatRoomsListRequest.txt
+getChatRoomsListResponse.json

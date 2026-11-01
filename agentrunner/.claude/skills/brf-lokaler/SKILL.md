@@ -12,8 +12,8 @@ description: Gemensamma utrymmen och lokaler i Brf Pärlan: bokning av gästläg
 - Avbokning: gå in i bokningen i PHM och radera den.
 - Husdjur är inte tillåtna i gästlägenhet och mötesrum.
 - Pris för gästlägenhet: 300 kr per natt (2025) `[verifiera aktuellt pris]`. Faktureras på månadsavi.
-- Städning av gästlägenhet och mötesrum utförs sista tisdagen varje månad av Hagtorn. Den dagen går inte att boka.
-- Information om städning, vad som ska medföras och regler finns i Boappa (dokument för övernattningslägenhet resp. mötesrum).
+- Städning av gästlägenhet och mötesrum utförs sista tisdagen varje månad `[BEKRÄFTA utförare: Hagtorn eller Bredablick]`. Den dagen går inte att boka.
+- Information om städning, vad som ska medföras och regler finns `[BEKRÄFTA var, Boappa är avvecklad]` (dokument för övernattningslägenhet resp. mötesrum).
 - Nyckelbox: koder ska aldrig skrivas i mejl eller i dessa filer. Hänvisa till bokningsbekräftelsen i PHM eller till ansvarig styrelseledamot.
 - Frågor om bokningssystemet: Bredablick eller `bokning@brfparlan.se`.
 
@@ -23,7 +23,7 @@ Vid mejl till `bokning@`: besvara kort och hänvisa till PHM Digital. Äldre mej
 
 - Mejllista: `verkstad@brfparlan.se` (Ola Alexanderson och Bengt Jönsson). Delad dokumentmapp finns för verkstadsrelaterade dokument.
 - Brandsäkerhet vid förvaring av elcyklar, mopeder och motorcyklar: enligt en medlems utredning (källa Räddningstjänsten Väst) kan **högst tre mopeder/motorcyklar** förvaras samtidigt, tankar får vara högst 25 liter, utrymmet ska vara en egen brandcell och nås från utsidan utan att passera trapphus. Detta är underlag, inte beslutad regel. Styrelsen beslutar om ordningsregler. `[KRÄVER STYRELSEBESLUT]`
-- Frågor om verkstadsregler: svara att styrelsen arbetar med ordningsregler. Ange inga beslutade regler som inte finns i Boappa.
+- Frågor om verkstadsregler: svara att styrelsen arbetar med ordningsregler. Ange inga beslutade regler som inte finns skriftligt hos styrelsen.
 - Mappning: `Folders/BrfPärlan/Lokalerna/Verkstad`.
 
 ## 3. Kommersiella lokaler (Lokal 1, 2, 3)

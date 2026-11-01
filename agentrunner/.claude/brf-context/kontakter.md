@@ -36,7 +36,7 @@ Senast verifierad: 2026-11-01. Endast roll- och funktionsadresser. Privata uppgi
 
 ## Hur man väljer rätt mottagare
 
-1. Fel i en lägenhet under garantitid: Envise Service (OBOS) eller Hagtorn beroende på felets typ (se `brf-felanmalan`).
+1. Fel i en lägenhet under garantitid: Envise Service (OBOS) eller teknisk förvaltare beroende på felets typ (se `brf-felanmalan`).
 2. Allmänna utrymmen: styrelsen gör felanmälan via gemensam brf-adress i Envise (OBOS-rådet).
 3. Ekonomi, överlåtelse, namnskylt (brevlåda samt dörren), porttelefon inställningar: Bredablick (PHM).
 4. Allt övrigt som inte kan avgöras: styrelsen (`styrelsen@`).

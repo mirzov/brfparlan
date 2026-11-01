@@ -11,14 +11,14 @@ Innehåll:
 - Kod till nyckelbox (skrivs **inte** i utkast från assistenten).
 - Kostnad per natt, faktureras i efterhand på månadsavi.
 - Husdjur är inte tillåtna.
-- Hänvisning till Boappa-dokument om städning och vad som ska medföras.
+- Hänvisning till dokument om städning och vad som ska medföras `[BEKRÄFTA var]`.
 - Avsändare: "Pärlans Styrelse". Kopia till `bokning@brfparlan.se`.
 
 ## Mötesrum – bekräftelsemejl (mönster)
 
 Ämne: `Pärlan MÖTESRUM, Din bokning är bekräftad <datum>`
 
-Innehåll: tidsintervall, kod till nyckelbox (inte i utkast), husdjur ej tillåtna, hänvisning till Boappa-dokument för mötesrum.
+Innehåll: tidsintervall, kod till nyckelbox (inte i utkast), husdjur ej tillåtna, hänvisning till dokument för mötesrum `[BEKRÄFTA var]`.
 
 ## Observera
 

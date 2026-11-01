@@ -18,7 +18,7 @@ Senast verifierad: 2026-11-01 (e-post t.o.m. 2026-10-31).
 - Årsstämma 2026 hölls 2026-06-24. Revisor för räkenskapsåret 2026: Ernst & Young (EY).
 - Förvaltning:
   - Fram till ca årsskiftet 2025/26: OBOS (ekonomisk förvaltning/brf-administration) och Hagtorn Fastighetsservice (teknisk förvaltning, städ, felanmälan).
-  - Under 2026 byttes ekonomisk förvaltare till Bredablick Förvaltning (system: PHM, e-signering via Assently/"PHM Digital signature service"). OBOS hanterar fortfarande historiska frågor för tiden de förvaltade. Frågan om totalförvaltning (teknisk + ekonomisk) utreddes våren 2026 med bl.a. Bredablick och Nabo `[verifiera nuvarande omfattning]`.
+  - Från 2026 är Bredablick Förvaltning totalförvaltare (ekonomisk och teknisk). System: PHM, e-signering via Assently/"PHM Digital signature service". Hagtorn är inte längre teknisk förvaltare sedan sommaren 2026. Hagtorns kvarvarande roll (t.ex. städ) `[BEKRÄFTA]`. OBOS hanterar fortfarande historiska frågor för tiden de förvaltade.
 - Försäkring: fastigheten är fullvärdesförsäkrad i Trygg-Hansa. Bostadsrättstillägg är kollektivt tecknat för medlemmarna.
 - Bank: Sparbanken Skåne (företagsrådgivare i Lund). Internetbankavtal för styrelsen kräver fysiskt möte för signering.
 
@@ -31,8 +31,8 @@ Senast verifierad: 2026-11-01 (e-post t.o.m. 2026-10-31).
 | Ekonomiansvarig | Nurgul Baigabylova (fakturor, bank) |
 | Ledamot | Heléne "Hille" Sjöström (trivsel, bokning gästlägenhet/mötesrum, fastighet/trivsel) |
 | Ledamot | Stina Helmbring (sekreterare, trivsel)|
-| Suppleang | Janet van der Meulen (ska flytta ut i slutet av 2026, var ansvarig för laddning, p-platser, hjärtstartare) |
-| Ledamot (nyare) | Aida Hosseini (kommersiella lokaler och affärsutveckling, kommunikation, tar över Janets uppgifter, fastighet) |
+| Suppleant | Janet van der Meulen (lämnar uppdraget under hösten 2026; har varit ansvarig för laddning, p-platser, hjärtstartare, överlämnar till Aida) |
+| Ledamot (nyare) | Aida Hosseini (kommersiella lokaler och affärsutveckling, kommunikation, fastighet; tar över laddning, p-platser och hjärtstartare från Janet) |
 | Ledamot | Oleg Mirzov (IT-ansvarig, fastighet)|
 | Valberedning (utanför styrelsen) | Bengt Jönsson (också aktiv inom verkstad, via `verkstad@`) |
 | Valberedning (utanför styrelsen) | Barbro Ottmer |
@@ -48,4 +48,4 @@ Senast verifierad: 2026-11-01 (e-post t.o.m. 2026-10-31).
 | Envise Service (OBOS) | Garantifelanmälningar för nyproduktion – via gemensam brf-adress |
 | Virta (app + Hub) | Elbilsladdning: användare, priser, fakturering |
 | Planima | Underhållsplan (läsbehörighet) |
-| Boappa (avverkat, föreningen övergick till PHM Digital och Facebook grupp) | Boendeportal: flöde, styrelsekontakt/ärendehantering, dokument för boende (Bopärm, Styrelseprotokoll), kontaktuppgifter, chatt |
+| Boappa (avvecklad) | Tidigare boendeportal. Föreningen använder nu PHM Digital och en Facebook-grupp. Historiska Boappa-dokument finns i e-postarkivet och på Google Drive |

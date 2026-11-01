@@ -1,6 +1,6 @@
 # Kontaktvägar för felanmälan
 
-Senast verifierad: 2026-11-01. Telefonnummer och inloggningar finns i Boappa (Kontakter) – skriv dem inte i mejl.
+Senast verifierad: 2026-11-01. Telefonnummer och inloggningar finns hos styrelsen eller i PHM Digital (Boappa är avvecklad) – skriv dem inte i mejl.
 
 ## Garanti (nyproduktion) – OBOS/Envise
 
@@ -9,9 +9,10 @@ Senast verifierad: 2026-11-01. Telefonnummer och inloggningar finns i Boappa (Ko
 - OBOS kontakt för eftermarknad: Nellie Skog (eftermarknadssamordnare). Överlämning/dokumentation: Max Gröndahl.
 - Svarstider kan vara långa. Be den boende att följa upp själv och bifoga ärendenummer.
 
-## Teknisk förvaltare – Hagtorn
+## Totalförvaltare – Bredablick (ekonomisk och teknisk förvaltning, från 2026)
 
-- `felanmalan@hagtornservice.se` för driftfel, nyckelboxar, namnskyltar, porttelefon, städreklamation.
+- Felanmälningsväg för driftfel, nyckelboxar, namnskyltar, porttelefon: `[BEKRÄFTA adress och rutin hos Bredablick]`.
+- Hagtorn Fastighetsservice är inte längre teknisk förvaltare sedan sommaren 2026. Dess adress används inte för nya ärenden utan bekräftelse `[BEKRÄFTA]`.
 - PHM-kundportal: styrelsen kan se planerat och utfört arbete.
 - Städavtalet och rutiner: se `brf-felanmalan` huvudfilen.
 
@@ -28,9 +29,9 @@ Senast verifierad: 2026-11-01. Telefonnummer och inloggningar finns i Boappa (Ko
 ## Värme och ventilation
 
 - Fjärrvärmeväxlare har intern styrning. Styr Entreprenad i Malmö AB läser av värden i DUC och kan skapa användare för åtkomst via PC-program (BAS2). Styrelsen har begärt konto.
-- Larm för ventilation hanteras av Hagtorn och Styr Entreprenad. Samla underlag i mappen `Tekniker`.
+- Larm för ventilation hanteras av Bredablick och Styr Entreprenad. Samla underlag i mappen `Tekniker`.
 
 ## Dokumentation
 
-- Relationsritningar (el, VVS) finns i Boappa → Bopärm → Relationsritningar och hos OBOS. El-ritningar saknades länge efter överlämningen och har begärts in. `[verifiera status]`
+- Relationsritningar (el, VVS) finns `[BEKRÄFTA: var i PHM Digital]` och hos OBOS. El-ritningar saknades länge efter överlämningen och har begärts in. `[verifiera status]`
 - Teknisk dokumentation sorteras i `Folders/BrfPärlan/Avtal & Dokument/Teknisk Dokumentation`.

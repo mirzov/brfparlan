@@ -26,9 +26,7 @@ Placeholders skrivs `<så här>`. Fyll i eller ersätt med `[BEKRÄFTA: ...]`.
 
 > Hej <förnamn>,
 >
-> Namnbyte på brevlåda, dörrskylt, anslagstavla och porttelefon hanteras av teknisk förvaltare. Mejla Hagtorn Fastighetsservice på felanmalan@hagtornservice.se och ange adress, lägenhetsnummer och önskat namn.
->
-> Vill du även ändra namn i Boappa kan du göra det själv under din profil (Min info).
+> Namnbyte på brevlåda, dörrskylt, anslagstavla och porttelefon hanteras av teknisk förvaltare. Mejla <BEKRÄFTA: felanmälningsadress hos Bredablick eller Hagtorn> och ange adress, lägenhetsnummer och önskat namn.
 >
 > Vänliga hälsningar,
 > Styrelsen Brf Pärlan i Lund
@@ -54,7 +52,7 @@ Placeholders skrivs `<så här>`. Fyll i eller ersätt med `[BEKRÄFTA: ...]`.
 > - Kostnad: <pris> kr per natt, faktureras i efterhand på din månadsavi. `[verifiera pris]`
 > - Husdjur är inte tillåtna.
 > - Kod till nyckelbox skickas av ansvarig styrelseledamot. `[Lägg inte in koden i utkastet]`
-> - Städning, vad du behöver ta med och regler finns under dokument för övernattningslägenheten i Boappa.
+> - Städning, vad du behöver ta med och regler finns under dokument för övernattningslägenheten. [BEKRÄFTA var]
 >
 > Med vänlig hälsning,
 > Pärlans styrelse
@@ -65,7 +63,7 @@ Placeholders skrivs `<så här>`. Fyll i eller ersätt med `[BEKRÄFTA: ...]`.
 >
 > Din bokning av mötesrummet <datum> kl. <från>–<till> är bekräftad.
 >
-> Husdjur är inte tillåtna. Regler och städinstruktion finns under dokument för mötesrum i Boappa. Koden till nyckelbox skickas av ansvarig styrelseledamot.
+> Husdjur är inte tillåtna. Regler och städinstruktion finns under dokument för mötesrum. [BEKRÄFTA var] Koden till nyckelbox skickas av ansvarig styrelseledamot.
 >
 > Med vänlig hälsning,
 > Pärlans styrelse

@@ -30,7 +30,7 @@ Antal mejl är uppskattningar från 2026-11.
 | `Ekonomi` (~325) | Fakturor, avier, bank, förvaltaravtal, budget, försäkring |
 | `Ekonomi/Rapporter` (~8) | Månadsrapporter och bokslutsrapporter från förvaltaren (ämne "Rapporter <månad>") |
 | `Intresseanmälningar` (~47) | Anmälningar till trivselaktiviteter (t.ex. jubileum, knytkalas), via `trivsel@` |
-| `IT_frågor` (~110) | E-post, Boappa-administration, nätverk, webbplats, delade dokument |
+| `IT_frågor` (~110) | E-post, historisk Boappa-administration, nätverk, webbplats, delade dokument |
 | `Lokalerna` (~50) | Gemensamma utrymmen i allmänhet |
 | `Lokalerna/Bokningar` (~22) | Bokningar och bekräftelser (gästlägenhet, mötesrum) via `bokning@` |
 | `Lokalerna/Uthyrningslokalerna` (~95) | Kommersiella lokaler ("Lokal 3"), hyresgäster, bygglov, mäklare |
@@ -43,7 +43,7 @@ Antal mejl är uppskattningar från 2026-11.
 | `Styrelsemöten` (~80) | Dagordningar, protokoll, förslag inför möten, interna styrelsediskussioner |
 | `Styrelsemöten/Årsstämmor` (~3) | Årsstämma, valberedningens förslag, kallelse |
 | `Tekniker` (~230) | Fastighetsteknik i allmänhet (ventilationslarm, fjärrvärme, solceller) |
-| `Tekniker/Felanmälningar` (~120) | Felanmälningar och uppföljning (OBOS/Envise, Hagtorn, GC Gruppen) |
+| `Tekniker/Felanmälningar` (~120) | Felanmälningar och uppföljning (OBOS/Envise, Hagtorn historiskt, Bredablick, GC Gruppen) |
 | `Tekniker/Förvaltning` (~55) | Teknisk förvaltning: städ, skötsel, PHM-kundportal, offerter totalförvaltning |
 | `Tekniker/Laddning` (~57) | Elbilsladdning (`laddning@`, Virta, priser) |
 | `Tekniker/PHM` (~5) | PHM-systemet: signering, överlåtelse, behörigheter |
@@ -52,7 +52,7 @@ Antal mejl är uppskattningar från 2026-11.
 | `Utemiljö` (~100) | Innergård, gemensamma ytor, kommunens planer i området, parkering |
 | `Utemiljö/Balkonger&Terraser` (~5) | Balkongskydd, inglasning (t.ex. Lumon), kulör, takterrass |
 | `Utemiljö/SBA` (~1) | Systematiskt brandskyddsarbete, beredskapsplan |
-| `Utkommunikationer` (~100) | Utskick till boende: Boappa-inlägg, jubileum, webbplats |
+| `Utkommunikationer` (~100) | Utskick till boende: Boappa-inlägg (historiska), jubileum, webbplats |
 | `Utkommunikationer/Mäklare` (~3) | Kontakt med mäklare (medlemskap, avgifter, energideklaration) |
 
 Tolkningar av mappar där innehållet inte är helt entydigt är gjorda utifrån stickprov. Följ hellre mappen som tråden redan ligger i än den här tabellen om de skiljer sig.
