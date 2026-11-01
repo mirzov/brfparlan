@@ -15,7 +15,7 @@ import jakarta.mail.search.MessageIDTerm
 import jakarta.mail.{Flags, Folder, Message, MessagingException, Session, Store}
 import org.eclipse.angus.mail.imap.IMAPFolder
 
-import se.brfparlan.emailassist.model.{ActionProposal, DraftReply, MoveToFolder}
+import se.brfparlan.emailassist.model.{ActionProposal, DeleteMessage, DraftReply, MoveToFolder}
 import java.security.cert.Certificate
 
 final case class MessageSummary(subject: String, from: String, date: String)
@@ -44,6 +44,7 @@ final class ImapMailbox private (store: Store, config: MailConfig) extends Mailb
   def execute(proposal: ActionProposal): Either[String, String] = proposal match
     case m: MoveToFolder => move(m)
     case d: DraftReply   => saveDraft(d)
+    case x: DeleteMessage => delete(x)
 
   def close(): Unit =
     try store.close()
@@ -62,6 +63,23 @@ final class ImapMailbox private (store: Store, config: MailConfig) extends Mailb
         }
       yield s"moved to '${dest.getFullName}'"
     }
+
+  // Deletion is recoverable: the message goes to the trash folder rather than being expunged.
+  private def delete(x: DeleteMessage): Either[String, String] =
+    if ImapMailbox.sameFolder(x.sourceFolder, config.trashFolder) then
+      Left(s"message is already in the trash folder '${config.trashFolder}'")
+    else
+      withOpenFolder(x.sourceFolder, Folder.READ_WRITE) { source =>
+        for
+          msg <- find(source, x.messageId)
+          trash <- resolveFolder(config.trashFolder)
+          _ <- attempt {
+            source match
+              case imap: IMAPFolder => imap.moveMessages(Array(msg), trash)
+              case other => throw MessagingException(s"unexpected folder type ${other.getClass.getName}")
+          }
+        yield s"moved to trash '${trash.getFullName}'"
+      }
 
   private def saveDraft(d: DraftReply): Either[String, String] =
     withOpenFolder(d.sourceFolder, Folder.READ_ONLY) { source =>
@@ -130,6 +148,9 @@ object ImapMailbox:
       store.connect(config.host, config.port, config.user, password)
       Right(ImapMailbox(store, config))
     catch case NonFatal(e) => Left(s"could not connect to ${config.host}:${config.port}: ${e.getMessage}")
+
+  def sameFolder(a: String, b: String): Boolean =
+    a.stripPrefix("Folders/") == b.stripPrefix("Folders/")
 
   def normalizeId(id: String): String = id.trim.stripPrefix("<").stripSuffix(">")
 

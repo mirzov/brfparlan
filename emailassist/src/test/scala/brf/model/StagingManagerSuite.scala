@@ -9,6 +9,7 @@ class StagingManagerSuite extends munit.FunSuite:
 
   private val move = MoveToFolder(
     "<m1@proton.me>",
+    123L,
     "INBOX",
     "Ansökningar/Andrahandsuthyrning",
     "Application for sublet",

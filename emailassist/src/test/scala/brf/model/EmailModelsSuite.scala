@@ -11,6 +11,7 @@ class EmailModelsSuite extends munit.FunSuite:
 
   private val move = MoveToFolder(
     messageId = "<abc@proton.me>",
+    uid = 123L,
     sourceFolder = "INBOX",
     destinationFolder = "Ekonomi/Fakturor",
     reason = "Invoice from Fastighetsservice",
@@ -19,6 +20,7 @@ class EmailModelsSuite extends munit.FunSuite:
 
   private val reply = DraftReply(
     messageId = "<abc@proton.me>",
+    uid = 223L,
     sourceFolder = "INBOX",
     draftContent = "Hej! Tack för ert meddelande.",
     reason = "Invoice from Fastighetsservice"

@@ -3,7 +3,7 @@ package se.brfparlan.emailassist.execution
 import scala.annotation.tailrec
 
 import se.brfparlan.emailassist.mcp.ProposalValidator
-import se.brfparlan.emailassist.model.{ActionProposal, DraftReply, MoveToFolder, StagingManager}
+import se.brfparlan.emailassist.model.{ActionProposal, DeleteMessage, DraftReply, MoveToFolder, StagingManager}
 
 trait ReviewConsole:
   def println(line: String): Unit
@@ -53,6 +53,7 @@ final class ReviewLoop(
   private def review(proposal: ActionProposal, n: Int, total: Int): Outcome =
     console.println(s"\n=== Action $n of $total ===")
     console.println(s"Folder:  ${proposal.sourceFolder}")
+    console.println(s"Message uid: ${proposal.uid}")
     mailbox.describe(proposal) match
       case Right(s) =>
         console.println(s"Subject: ${s.subject}")
@@ -119,6 +120,8 @@ final class ReviewLoop(
         Right(m.copy(destinationFolder = destination, markAsRead = markAsRead))
       case d: DraftReply =>
         console.editText(d.draftContent).map(text => d.copy(draftContent = text.stripTrailing))
+      case x: DeleteMessage =>
+        Right(x)
     edited.flatMap(ProposalValidator.validate) match
       case Right(valid) => valid
       case Left(err) =>
@@ -130,3 +133,5 @@ final class ReviewLoop(
       s"Move to ${m.destinationFolder}" + (if m.markAsRead then " and mark as read" else "")
     case d: DraftReply =>
       "Save reply draft:\n" + d.draftContent.linesIterator.map("    | " + _).mkString("\n")
+    case _: DeleteMessage =>
+      "Delete (move to trash)"

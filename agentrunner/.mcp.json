@@ -14,12 +14,11 @@
     },
     "brf-mail-mcp": {
       "type": "stdio",
-      "command": "scala-cli",
+      "command": "env",
       "args": [
-        "run",
-        "/home/oleg/workspace/parlan/brfparlan/emailassist",
-        "--main-class",
-        "se.brfparlan.emailassist.mcp.BrfMailMcp"
+        "--chdir=/home/oleg/workspace/parlan/brfparlan/emailassist",
+        "scala-cli", "run", ".",
+        "--main-class", "se.brfparlan.emailassist.mcp.BrfMailMcp"
       ],
       "env": {
         "JAVA_HOME": "/usr/lib/jvm/java-25-openjdk-amd64"

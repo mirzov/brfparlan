@@ -2,7 +2,7 @@ package se.brfparlan.emailassist.mcp
 
 import com.tjclp.fastmcp.{*, given}
 
-import se.brfparlan.emailassist.model.{ActionProposal, DraftReply, MoveToFolder, StagingManager}
+import se.brfparlan.emailassist.model.{ActionProposal, DeleteMessage, DraftReply, MoveToFolder, StagingManager}
 
 // Writes to stdout are the MCP protocol channel; log to stderr only.
 object BrfMailMcp extends McpServerApp[Stdio, BrfMailMcp.type]:
@@ -18,7 +18,7 @@ object BrfMailMcp extends McpServerApp[Stdio, BrfMailMcp.type]:
     openWorldHint = Some(false)
   )
   def proposeAction(
-      @Param("The action to stage: a MoveToFolder or a DraftReply") proposal: ActionProposal
+      @Param("The action to stage: a MoveToFolder, a DraftReply or a DeleteMessage") proposal: ActionProposal
   ): String =
     ProposalValidator.validate(proposal) match
       case Left(error) => s"Error: $error"
@@ -43,6 +43,10 @@ object ProposalValidator:
           identifier("sourceFolder", d.sourceFolder) ++
           text("draftContent", d.draftContent) ++
           text("reason", d.reason)
+      case x: DeleteMessage =>
+        identifier("messageId", x.messageId) ++
+          identifier("sourceFolder", x.sourceFolder) ++
+          text("reason", x.reason)
     if problems.isEmpty then Right(proposal)
     else Left(problems.mkString("rejected: ", "; ", "."))
 

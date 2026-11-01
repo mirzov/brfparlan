@@ -1,0 +1,11 @@
+{
+	"mcpServers": {
+		"emailassist-metals": {
+			"type": "http",
+			"url": "http://localhost:42599/mcp",
+			"tools": [
+				"*"
+			]
+		}
+	}
+}

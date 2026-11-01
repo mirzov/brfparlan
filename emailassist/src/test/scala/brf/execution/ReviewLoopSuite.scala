@@ -12,8 +12,8 @@ import se.brfparlan.emailassist.model.{ActionProposal, DraftReply, MoveToFolder,
 
 class ReviewLoopSuite extends munit.FunSuite:
 
-  private val move = MoveToFolder("<m1@proton.me>", "INBOX", "Ekonomi/Fakturor", "Invoice", markAsRead = false)
-  private val reply = DraftReply("<m2@proton.me>", "INBOX", "Hej! Tack för ert meddelande.", "Question")
+  private val move = MoveToFolder("<m1@proton.me>", 123L, "INBOX", "Ekonomi/Fakturor", "Invoice", markAsRead = false)
+  private val reply = DraftReply("<m2@proton.me>", 321L, "INBOX", "Hej! Tack för ert meddelande.", "Question")
 
   private class FakeMailbox(failing: Set[String] = Set.empty) extends Mailbox:
     val executed = mutable.Buffer.empty[ActionProposal]

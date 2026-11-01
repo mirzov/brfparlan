@@ -9,7 +9,8 @@ final case class MailConfig(
     password: Option[String],
     fromAddress: String,
     draftsFolder: String,
-    certFile: Option[Path]
+    certFile: Option[Path],
+    trashFolder: String = "Trash"
 )
 
 object MailConfig:
@@ -23,7 +24,8 @@ object MailConfig:
       |  BRF_IMAP_PORT      default 1143 (STARTTLS)
       |  BRF_IMAP_CERT      Bridge TLS certificate (PEM), default ./proton-bridge-cert.pem if present
       |  BRF_FROM_ADDRESS   From address for drafts, default BRF_IMAP_USER
-      |  BRF_DRAFTS_FOLDER  default Drafts""".stripMargin
+      |  BRF_DRAFTS_FOLDER  default Drafts
+      |  BRF_TRASH_FOLDER   where deleted messages are moved, default Trash""".stripMargin
 
   def fromEnv(env: Map[String, String]): Either[String, MailConfig] =
     def opt(name: String): Option[String] = env.get(name).map(_.trim).filter(_.nonEmpty)
@@ -45,5 +47,6 @@ object MailConfig:
       password = env.get("BRF_IMAP_PASSWORD").filter(_.nonEmpty),
       fromAddress = opt("BRF_FROM_ADDRESS").getOrElse(user),
       draftsFolder = opt("BRF_DRAFTS_FOLDER").getOrElse("Drafts"),
-      certFile = cert
+      certFile = cert,
+      trashFolder = opt("BRF_TRASH_FOLDER").getOrElse("Trash")
     )
