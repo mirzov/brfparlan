@@ -3,8 +3,9 @@ package se.brfparlan.model.knowledge
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.Normalizer
-import upickle.core.Abort
-import upickle.{default => upick}
+import io.circe.{Codec, Decoder, Encoder}
+import io.circe.parser.decode
+import io.circe.syntax.*
 
 
 trait Topic:
@@ -22,7 +23,7 @@ object Topic:
     name: String,
     description: String,
     parents: Seq[Topic.Id]
-  ) extends Topic derives upick.ReadWriter
+  ) extends Topic derives Codec.AsObject
 
   private def asImpl(topic: Topic): TopicImpl = topic match
     case impl: TopicImpl => impl
@@ -41,16 +42,16 @@ object Topic:
   def parseId(s: String): Option[Id] = if validIdPattern.matches(s) then Some(s) else None
 
   def parseFile(path: Path): Seq[Topic] =
-    upick.read[Seq[TopicImpl]](Files.readString(path))
+    decode[Seq[TopicImpl]](Files.readString(path)).fold(throw _, identity)
 
   def writeFile(topics: Seq[Topic], path: Path): Unit =
-    Files.writeString(path, upick.write(topics.map(asImpl), indent = 2))
+    Files.writeString(path, topics.map(asImpl).asJson.spaces2)
 
 end Topic
 
-given upick.ReadWriter[Topic.Id] = upick.readwriter[String].bimap[Topic.Id](
-  id => id,
-  str => Topic.parseId(str).getOrElse(throw Abort(s"Invalid format for Topic id: $str"))
+given Codec[Topic.Id] = Codec.from(
+  Decoder.decodeString.emap(str => Topic.parseId(str).toRight(s"Invalid format for Topic id: $str")),
+  Encoder.encodeString.contramap[Topic.Id](identity)
 )
 
 

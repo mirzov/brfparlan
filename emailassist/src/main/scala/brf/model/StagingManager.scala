@@ -7,7 +7,8 @@ import java.nio.file.{Files, Path, Paths, StandardCopyOption, StandardOpenOption
 
 import scala.util.control.NonFatal
 
-import upickle.default.{read, write}
+import io.circe.parser.decode
+import io.circe.syntax.*
 
 object StagingManager:
   val DefaultFile: Path = Paths.get(".brf", "pending_actions.json")
@@ -52,7 +53,7 @@ final class StagingManager(file: Path = StagingManager.DefaultFile):
       try
         val text = Files.readString(file, StandardCharsets.UTF_8)
         if text.isBlank then Right(Vector.empty)
-        else Right(read[Vector[ActionProposal]](text))
+        else decode[Vector[ActionProposal]](text).left.map(e => s"failed to read $file: ${e.getMessage}")
       catch
         case NonFatal(e) => Left(s"failed to read $file: ${e.getMessage}")
 
@@ -60,7 +61,7 @@ final class StagingManager(file: Path = StagingManager.DefaultFile):
     try
       val parent = file.toAbsolutePath.getParent
       Files.createDirectories(parent)
-      val text = write(proposals, indent = 2)
+      val text = proposals.asJson.spaces2
       // Write to a temp file and move it into place so readers never see a partial file.
       val tmp = file.resolveSibling(file.getFileName.toString + ".tmp")
       Files.writeString(tmp, text, StandardCharsets.UTF_8)

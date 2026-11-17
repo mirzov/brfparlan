@@ -7,7 +7,7 @@ import scala.concurrent.{Await, ExecutionContext, Future}
 
 import upickle.default.{read, write}
 
-class EmailModelsSuite extends munit.FunSuite:
+class ActionProposalsSuite extends munit.FunSuite:
 
   private val move = MoveToFolder(
     messageId = "<abc@proton.me>",
@@ -31,4 +31,4 @@ class EmailModelsSuite extends munit.FunSuite:
     assertEquals(read[ActionProposal](write(reply)), reply)
   }
 
-end EmailModelsSuite
+end ActionProposalsSuite

@@ -1,8 +1,8 @@
 package se.brfparlan.emailassist.model
 
-import upickle.default.ReadWriter
+import io.circe.Codec
 
-sealed trait ActionProposal derives ReadWriter:
+sealed trait ActionProposal derives Codec.AsObject:
   def messageId: String
   def uid: Long
   def sourceFolder: String

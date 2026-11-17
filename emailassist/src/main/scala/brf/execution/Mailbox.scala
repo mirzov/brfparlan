@@ -93,6 +93,8 @@ final class ImapMailbox private (store: Store, config: MailConfig) extends Mailb
           reply.setText(d.draftContent, "UTF-8")
           reply.setFlag(Flags.Flag.DRAFT, true)
           reply.saveChanges()
+          //println(s"In-Reply-To: ${reply.getHeader("In-Reply-To").mkString(", ")}")
+          //println(s"References: ${reply.getHeader("References").mkString(", ")}")
           drafts.appendMessages(Array(reply))
         }
       yield s"reply draft saved in '${drafts.getFullName}'"

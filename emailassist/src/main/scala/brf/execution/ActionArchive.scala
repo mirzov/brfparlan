@@ -5,7 +5,8 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Path, StandardOpenOption}
 import java.time.Instant
 
-import upickle.default.{ReadWriter, write}
+import io.circe.Codec
+import io.circe.syntax.*
 
 import se.brfparlan.emailassist.model.ActionProposal
 
@@ -14,7 +15,7 @@ final case class ArchivedAction(
     decision: String,
     proposal: ActionProposal,
     outcome: String
-) derives ReadWriter
+) derives Codec.AsObject
 
 /** Append-only JSON Lines log of reviewed actions. */
 final class ActionArchive(file: Path):
@@ -25,7 +26,7 @@ final class ActionArchive(file: Path):
       Files.createDirectories(file.toAbsolutePath.getParent)
       Files.writeString(
         file,
-        write(entry) + "\n",
+        entry.asJson.noSpaces + "\n",
         StandardCharsets.UTF_8,
         StandardOpenOption.CREATE,
         StandardOpenOption.APPEND
