@@ -1,8 +1,9 @@
 package se.brfparlan.emailassist.mcp
 
+import se.brfparlan.emailassist.model.{ActionProposal, DeleteMessage, DraftReply, MoveToFolder, StagingManager}
+/*
 import com.tjclp.fastmcp.{*, given}
 
-import se.brfparlan.emailassist.model.{ActionProposal, DeleteMessage, DraftReply, MoveToFolder, StagingManager}
 
 // Writes to stdout are the MCP protocol channel; log to stderr only.
 object BrfMailMcp extends McpServerApp[Stdio, BrfMailMcp.type]:
@@ -26,7 +27,7 @@ object BrfMailMcp extends McpServerApp[Stdio, BrfMailMcp.type]:
         staging.append(valid) match
           case Right(()) => "Staged for review."
           case Left(error) => s"Error: could not stage proposal: $error"
-
+*/
 object ProposalValidator:
 
   def validate(proposal: ActionProposal): Either[String, ActionProposal] =

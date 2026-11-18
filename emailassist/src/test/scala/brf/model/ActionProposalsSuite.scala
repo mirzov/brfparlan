@@ -5,7 +5,8 @@ import java.nio.file.{Files, Path}
 import scala.concurrent.duration.*
 import scala.concurrent.{Await, ExecutionContext, Future}
 
-import upickle.default.{read, write}
+import io.circe.parser.decode
+import io.circe.Encoder
 
 class ActionProposalsSuite extends munit.FunSuite:
 
@@ -26,9 +27,12 @@ class ActionProposalsSuite extends munit.FunSuite:
     reason = "Invoice from Fastighetsservice"
   )
 
+  private def roundTrip(proposal: ActionProposal): Either[io.circe.Error, ActionProposal] =
+    decode[ActionProposal](summon[Encoder[ActionProposal]](proposal).noSpaces)
+
   test("ActionProposal round-trips through JSON") {
-    assertEquals(read[ActionProposal](write(move)), move)
-    assertEquals(read[ActionProposal](write(reply)), reply)
+    assertEquals(roundTrip(move), Right(move))
+    assertEquals(roundTrip(reply), Right(reply))
   }
 
 end ActionProposalsSuite

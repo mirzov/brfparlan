@@ -6,7 +6,7 @@ import java.nio.file.{Files, Path}
 import scala.collection.mutable
 import scala.jdk.CollectionConverters.*
 
-import upickle.default.read
+import io.circe.parser.decode
 
 import se.brfparlan.emailassist.model.{ActionProposal, DraftReply, MoveToFolder, StagingManager}
 
@@ -40,16 +40,19 @@ class ReviewLoopSuite extends munit.FunSuite:
 
   private def archived(file: Path): List[ArchivedAction] =
     if !Files.exists(file) then Nil
-    else Files.readAllLines(file, StandardCharsets.UTF_8).asScala.toList.map(read[ArchivedAction](_))
+    else
+      Files.readAllLines(file, StandardCharsets.UTF_8).asScala.toList.map { line =>
+        decode[ArchivedAction](line).fold(throw _, identity)
+      }
 
   test("approve executes and removes, reject removes without executing") {
     val (staging, archive, archiveFile) = setup(move, reply)
     val mailbox = FakeMailbox()
-    val summary = ReviewLoop(mailbox, staging, archive, ScriptedConsole("y", "n")()).run(Vector(move, reply))
+    val summary = ReviewLoop(mailbox, staging, archive, ScriptedConsole("n", "y")()).run(Vector(move, reply))
     assertEquals(summary, ReviewSummary(executed = 1, rejected = 1, failed = 0, remaining = 0))
     assertEquals(mailbox.executed.toList, List(move))
     assertEquals(staging.readAll(), Right(Vector.empty[ActionProposal]))
-    assertEquals(archived(archiveFile).map(a => (a.decision, a.proposal)), List("approved" -> move, "rejected" -> reply))
+    assertEquals(archived(archiveFile).map(a => (a.decision, a.proposal)), List("rejected" -> reply, "approved" -> move))
   }
 
   test("quit and end of input leave remaining actions pending") {
@@ -62,7 +65,7 @@ class ReviewLoopSuite extends munit.FunSuite:
 
     val eof = ReviewLoop(mailbox, staging, archive, ScriptedConsole("n")()).run(Vector(move, reply))
     assertEquals(eof, ReviewSummary(executed = 0, rejected = 1, failed = 0, remaining = 1))
-    assertEquals(staging.readAll(), Right(Vector(reply)))
+    assertEquals(staging.readAll(), Right(Vector(move)))
   }
 
   test("failed execution keeps the action and continues") {

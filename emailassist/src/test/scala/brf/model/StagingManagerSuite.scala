@@ -3,7 +3,6 @@ package se.brfparlan.emailassist.model
 import java.nio.file.{Files, Path}
 import scala.concurrent.duration.*
 import scala.concurrent.{Await, ExecutionContext, Future}
-import upickle.default.{read, write}
 
 class StagingManagerSuite extends munit.FunSuite:
 
